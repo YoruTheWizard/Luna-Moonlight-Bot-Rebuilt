@@ -4,4 +4,85 @@
     "description": "Responde com \"pong\"",
     "category": "Outros"
   },
+  "announcement": {
+    "name": "anuncio",
+    "description": "Manda um anúncio",
+    "options": [
+      {
+        "name": "obra",
+        "description": "Nome da obra"
+      }
+    ],
+    "category": "Conteúdo"
+  },
+  "announcement_release": {
+    "name": "anuncio lancamento",
+    "subName": "lancamento",
+    "description": "(Staff) Envia um anúncio de novo lançamento",
+    "options": [
+      {
+        "name": "tipo",
+        "description": "Tipo de lançamento",
+        "choices": [
+          {
+            "name": "Capítulo",
+            "value": "capítulo"
+          },
+          {
+            "name": "Volume",
+            "value": "volume"
+          }
+        ]
+      },
+      {
+        "name": "numeros",
+        "description": "Números do lançamento (separados por vírgula)"
+      },
+      {
+        "name": "links",
+        "description": "Links do lançamento"
+      },
+      {
+        "name": "volume",
+        "description": "Volume do lançamento"
+      },
+      {
+        "name": "descricao",
+        "description": "Descrição do lançamento"
+      },
+      {
+        "name": "imagem",
+        "description": "Imagem do lançamento"
+      },
+      {
+        "name": "url-imagem",
+        "description": "URL da imagem do lançamento"
+      }
+    ],
+    "category": "Conteúdo"
+  },
+  "announcement_title": {
+    "name": "anuncio obra",
+    "subName": "obra",
+    "description": "(Staff) Envia um anúncio de nova obra",
+    "options": [
+      {
+        "name": "",
+        "description": ""
+      }
+    ],
+    "category": "Conteúdo"
+  },
+  "announcement_recruitment": {
+    "name": "anuncio recrutamento",
+    "subName": "recrutamento",
+    "description": "(Staff) Envia um anúncio de recrutamento para todos no servidor",
+    "options": [
+      {
+        "name": "",
+        "description": ""
+      }
+    ],
+    "category": "Conteúdo"
+  }
 }

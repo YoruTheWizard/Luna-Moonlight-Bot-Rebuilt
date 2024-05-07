@@ -1,4 +1,5 @@
 {
   "messageSent": "Mensagem enviada!",
+  "wrongLinkFormat": "*Opa!* Parece que você mandou os links do jeito errado!\nTente escrever os links no modelo: *\"link.com Nome-do-link emoji\"*.\nOs emojis não são obrigatórios.",
   "error": "*Algo deu errado... :(*"
 }

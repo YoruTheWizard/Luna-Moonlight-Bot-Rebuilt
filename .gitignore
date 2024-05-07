@@ -131,4 +131,4 @@ dist
 
 # Project
 config.json
-json/
+internal/

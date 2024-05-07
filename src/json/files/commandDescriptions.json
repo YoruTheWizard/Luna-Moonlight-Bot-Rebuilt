@@ -1,0 +1,7 @@
+{
+  "ping": {
+    "name": "ping",
+    "description": "Responde com \"pong\"",
+    "category": "Outros"
+  },
+}

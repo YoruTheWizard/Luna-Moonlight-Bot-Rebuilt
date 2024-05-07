@@ -2,17 +2,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { CommandKit } from 'commandkit';
-import { Client, type ClientOptions, IntentsBitField } from 'discord.js';
+import { Client, type ClientOptions } from 'discord.js';
 import { join } from 'path';
 import * as config from './config.json';
 
 const clientOptions: ClientOptions = {
   intents: [
-    IntentsBitField.Flags.Guilds,
-    IntentsBitField.Flags.GuildMembers,
-    IntentsBitField.Flags.GuildMessages,
-    IntentsBitField.Flags.GuildPresences,
-    IntentsBitField.Flags.MessageContent,
+    'Guilds',
+    'GuildMessages',
+    'GuildMembers',
+    'GuildPresences',
+    'MessageContent',
   ],
   allowedMentions: {
     parse: ['everyone', 'users', 'roles'],
@@ -35,6 +35,7 @@ const start = () => {
     client,
     ...commandkitConfig,
   });
+  client.login(process.env.TOKEN);
 };
 start();
 

@@ -1,7 +1,6 @@
 import {
   ChatInputCommandInteraction,
   ColorResolvable,
-  CommandInteractionOptionResolver,
   EmbedBuilder,
 } from 'discord.js';
 import { commandDescriptions, messages } from '../json';
@@ -12,14 +11,19 @@ import {
   sendContentEmbeds,
 } from './content';
 import errorLogger from './errorLogger';
-const { announcement, announcement_release } = commandDescriptions;
+const {
+  announcement,
+  announcement_release,
+  announcement_title,
+  // announcement_recruitment
+} = commandDescriptions;
 
 type AnnouncementFunc = (
   interaction: ChatInputCommandInteraction,
 ) => Promise<void>;
 
 export const release: AnnouncementFunc = async interaction => {
-  const options = interaction.options as CommandInteractionOptionResolver;
+  const options = interaction.options;
   const announcementOpts = announcement.options;
   const releaseOpts = announcement_release.options;
 
@@ -35,6 +39,9 @@ export const release: AnnouncementFunc = async interaction => {
   const image =
     options.getAttachment(releaseOpts[5].name) ||
     options.getString(releaseOpts[6].name);
+
+  const titleObj = getScanTitle(titleName);
+  if (!titleObj) return;
 
   if (!titleLinks[0].name) {
     interaction.reply({ content: messages.wrongLinkFormat, ephemeral: true });
@@ -58,9 +65,6 @@ export const release: AnnouncementFunc = async interaction => {
     });
   else numStr = `**${numbers[0]}**`;
 
-  const titleObj = getScanTitle(titleName);
-  if (!titleObj) return;
-
   const releaseEmbed = new EmbedBuilder()
     .setColor(titleObj.color as ColorResolvable)
     .setAuthor({ name: (titleObj.longNameJP || titleObj.longNameEN) as string })
@@ -80,7 +84,7 @@ export const release: AnnouncementFunc = async interaction => {
   try {
     await sendContentEmbeds(interaction, {
       role: role || '@deleted-role',
-      embeds: [releaseEmbed],
+      embeds: [releaseEmbed.toJSON()],
       ephemeral: true,
       rows: [linksRow],
     });
@@ -90,6 +94,43 @@ export const release: AnnouncementFunc = async interaction => {
   }
 };
 
-// export const title: AnnouncementFunc = async interaction => { }
+export const title: AnnouncementFunc = async interaction => {
+  const options = interaction.options;
+  const titleOpts = announcement_title.options;
+
+  const author = interaction.user;
+  const titleName = options.getString(titleOpts[0].name, true);
+  const titleLinksText = options.getString(titleOpts[1].name, true);
+  const titleLinks = linkListTreater(titleLinksText);
+  const linksRow = linksButtonRow(titleLinks);
+  const sinopsys = options.getString(titleOpts[2].name);
+  const comment = options.getString(titleOpts[3].name);
+  const image =
+    options.getAttachment(titleOpts[4].name) ||
+    options.getString(titleOpts[5].name);
+
+  const titleEmbed = new EmbedBuilder()
+    .setColor('Random')
+    .setAuthor({
+      name: author.displayName,
+      iconURL: author.displayAvatarURL(),
+    })
+    .setTitle('Nova obra chegando na Moonlight!')
+    .setDescription(`Nome: **${titleName}**`);
+
+  if (sinopsys) titleEmbed.addFields({ name: 'Sinopse', value: sinopsys });
+  if (comment) titleEmbed.addFields({ name: 'Comentário', value: comment });
+  if (image) titleEmbed.setImage(typeof image === 'string' ? image : image.url);
+
+  try {
+    await sendContentEmbeds(interaction, {
+      embeds: [titleEmbed.toJSON()],
+      ephemeral: true,
+      rows: [linksRow],
+    });
+  } catch (err) {
+    errorLogger('obra', err);
+  }
+};
 
 // export const recruitment: AnnouncementFunc = async interaction=> { }

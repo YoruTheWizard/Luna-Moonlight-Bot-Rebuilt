@@ -1,7 +1,7 @@
 import {
   APIActionRowComponent,
   APIButtonComponent,
-  EmbedBuilder,
+  APIEmbed,
   Role,
 } from 'discord.js';
 
@@ -23,7 +23,7 @@ export type CommandOptionChoiceFormat = {
 
 export type EmbedFunctionOptions = {
   role?: Role | '@deleted-role' | '@everyone';
-  embeds: EmbedBuilder[];
+  embeds: APIEmbed[];
   rows?: APIActionRowComponent<APIButtonComponent>[];
   ephemeral: boolean;
 };

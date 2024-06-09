@@ -100,7 +100,39 @@ export const data = new SlashCommandBuilder()
   .addSubcommand(sub =>
     sub
       .setName(announcement_title.subName)
-      .setDescription(announcement_title.description),
+      .setDescription(announcement_title.description)
+      .addStringOption(opt =>
+        opt
+          .setName(announcement_title.options[0].name)
+          .setDescription(announcement_title.options[0].description)
+          .setRequired(true),
+      )
+      .addStringOption(opt =>
+        opt
+          .setName(announcement_title.options[1].name)
+          .setDescription(announcement_title.options[1].description)
+          .setRequired(true),
+      )
+      .addStringOption(opt =>
+        opt
+          .setName(announcement_title.options[2].name)
+          .setDescription(announcement_title.options[2].description),
+      )
+      .addStringOption(opt =>
+        opt
+          .setName(announcement_title.options[3].name)
+          .setDescription(announcement_title.options[3].description),
+      )
+      .addAttachmentOption(opt =>
+        opt
+          .setName(announcement_title.options[4].name)
+          .setDescription(announcement_title.options[4].description),
+      )
+      .addStringOption(opt =>
+        opt
+          .setName(announcement_title.options[5].name)
+          .setDescription(announcement_title.options[5].description),
+      ),
   )
 
   // "recruitment" subcommand
@@ -114,16 +146,17 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
   const subcommand = interaction.options.getSubcommand();
   switch (subcommand) {
     case announcement_release.subName:
-      announcementFunctions.release(interaction);
+      await announcementFunctions.release(interaction);
       return;
     case announcement_title.subName:
-      announcementFunctions.release(interaction);
+      await announcementFunctions.title(interaction);
       return;
     case announcement_recruitment.subName:
-      announcementFunctions.release(interaction);
+      await announcementFunctions.release(interaction);
   }
 }
 
 export const options: CommandOptions = {
   deleted: false,
+  devOnly: true,
 };

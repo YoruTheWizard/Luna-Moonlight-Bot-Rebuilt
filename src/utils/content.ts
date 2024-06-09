@@ -84,8 +84,10 @@ export function linksButtonRow(links: ContentLinkObject[]) {
 
 export async function sendContentEmbeds(
   interaction: ChatInputCommandInteraction,
-  { role, embeds, rows, ephemeral }: EmbedFunctionOptions,
+  options: EmbedFunctionOptions,
 ): Promise<void> {
+  const { embeds, rows, ephemeral } = options;
+  let { role } = options;
   if (!role) role = '@everyone';
   const messageOptions = {
     content: `${role}`,

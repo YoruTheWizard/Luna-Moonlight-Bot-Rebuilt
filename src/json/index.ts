@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import { addToJsonFN, CustomNicknameUser, ScanTitle } from '../types';
 import * as commandDescriptionsJson from './files/commandDescriptions.json';
 import customNicksJson from './files/internal/customNicks.json';
@@ -11,6 +13,10 @@ export const customNicks = customNicksJson as CustomNicknameUser[];
 
 export const addToJson: addToJsonFN = (file, data) => {
   // eslint-disable-next-line
-  const jsonFile = require(`./files/private/${file}.json`) as (typeof data)[];
+  const jsonFile = require(`./files/internal/${file}.json`) as (typeof data)[];
   jsonFile.push(data);
+  fs.writeFileSync(
+    `./src/json/files/internal/${file}.json`,
+    JSON.stringify(data, null, 2),
+  );
 };

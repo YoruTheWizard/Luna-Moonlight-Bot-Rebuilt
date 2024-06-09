@@ -67,8 +67,28 @@
     "description": "(Staff) Envia um anúncio de nova obra",
     "options": [
       {
-        "name": "",
-        "description": ""
+        "name": "nome",
+        "description": "Nome da obra"
+      },
+      {
+        "name": "links",
+        "description": "Links da obra"
+      },
+      {
+        "name": "sinopse",
+        "description": "Sinopse da obra"
+      },
+      {
+        "name": "comentario",
+        "description": "Algum comentário"
+      },
+      {
+        "name": "iamgem",
+        "description": "Imagem da obra"
+      },
+      {
+        "name": "url-imagem",
+        "description": "URL da imagem da obra"
       }
     ],
     "category": "Conteúdo"

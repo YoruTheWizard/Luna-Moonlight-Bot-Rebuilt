@@ -101,33 +101,45 @@ export const data = new SlashCommandBuilder()
     sub
       .setName(announcement_title.subName)
       .setDescription(announcement_title.description)
+
+      // "name" option
       .addStringOption(opt =>
         opt
           .setName(announcement_title.options[0].name)
           .setDescription(announcement_title.options[0].description)
           .setRequired(true),
       )
+
+      // "lnks" option
       .addStringOption(opt =>
         opt
           .setName(announcement_title.options[1].name)
           .setDescription(announcement_title.options[1].description)
           .setRequired(true),
       )
+
+      // "sinopsys" option
       .addStringOption(opt =>
         opt
           .setName(announcement_title.options[2].name)
           .setDescription(announcement_title.options[2].description),
       )
+
+      // "comment" option
       .addStringOption(opt =>
         opt
           .setName(announcement_title.options[3].name)
           .setDescription(announcement_title.options[3].description),
       )
+
+      // "image" option
       .addAttachmentOption(opt =>
         opt
           .setName(announcement_title.options[4].name)
           .setDescription(announcement_title.options[4].description),
       )
+
+      // "image-url" option
       .addStringOption(opt =>
         opt
           .setName(announcement_title.options[5].name)

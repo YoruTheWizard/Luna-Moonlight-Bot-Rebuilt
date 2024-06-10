@@ -1,9 +1,12 @@
 import type { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
+import { getCommandDescription } from '../../json';
+
+const ping = getCommandDescription('ping');
 
 export const data: SlashCommandBuilder = new SlashCommandBuilder()
-  .setName('ping')
-  .setDescription('Responde com "pong"');
+  .setName(ping.name)
+  .setDescription(ping.description);
 
 export async function run({
   interaction,

@@ -3,7 +3,7 @@ import {
   ColorResolvable,
   EmbedBuilder,
 } from 'discord.js';
-import { commandDescriptions, messages } from '../json';
+import { getCommandDescription, messages } from '../json';
 import {
   getScanTitle,
   linkListTreater,
@@ -11,12 +11,11 @@ import {
   sendContentEmbeds,
 } from './content';
 import errorLogger from './errorLogger';
-const {
-  announcement,
-  announcement_release,
-  announcement_title,
-  // announcement_recruitment
-} = commandDescriptions;
+
+const announcement = getCommandDescription('announcement');
+const announcement_release = getCommandDescription('announcement_release');
+const announcement_title = getCommandDescription('announcement_title');
+//const announcement_recruitment = getCommandDescription('announcement_recruitment');
 
 type AnnouncementFunc = (
   interaction: ChatInputCommandInteraction,
@@ -24,8 +23,8 @@ type AnnouncementFunc = (
 
 export const release: AnnouncementFunc = async interaction => {
   const options = interaction.options;
-  const announcementOpts = announcement.options;
-  const releaseOpts = announcement_release.options;
+  const announcementOpts = announcement.options!;
+  const releaseOpts = announcement_release.options!;
 
   const titleName = options.getString(announcementOpts[0].name)!;
   const type = options.getString(releaseOpts[0].name)!;
@@ -96,7 +95,7 @@ export const release: AnnouncementFunc = async interaction => {
 
 export const title: AnnouncementFunc = async interaction => {
   const options = interaction.options;
-  const titleOpts = announcement_title.options;
+  const titleOpts = announcement_title.options!;
 
   const author = interaction.user;
   const titleName = options.getString(titleOpts[0].name, true);

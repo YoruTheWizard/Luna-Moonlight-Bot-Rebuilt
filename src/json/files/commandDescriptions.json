@@ -7,6 +7,8 @@
   "announcement": {
     "name": "anuncio",
     "description": "Manda um anúncio",
+    "restriction": "staff",
+    "subcommands": ["lancamento", "obra", "recrutamento"],
     "options": [
       {
         "name": "obra",
@@ -19,6 +21,7 @@
     "name": "anuncio lancamento",
     "subName": "lancamento",
     "description": "(Staff) Envia um anúncio de novo lançamento",
+    "restriction": "staff",
     "options": [
       {
         "name": "tipo",
@@ -65,6 +68,7 @@
     "name": "anuncio obra",
     "subName": "obra",
     "description": "(Staff) Envia um anúncio de nova obra",
+    "restriction": "staff",
     "options": [
       {
         "name": "nome",
@@ -97,6 +101,7 @@
     "name": "anuncio recrutamento",
     "subName": "recrutamento",
     "description": "(Staff) Envia um anúncio de recrutamento para todos no servidor",
+    "restriction": "staff",
     "options": [
       {
         "name": "",

@@ -6,14 +6,14 @@ import {
   SlashCommandStringOption,
 } from 'discord.js';
 
-import { commandDescriptions, messages, scanTitles } from '../json';
+import { getCommandDescription, messages, scanTitles } from '../json';
 import type {
-  CommandOptionChoiceFormat,
   ContentLinkObject,
   EmbedFunctionOptions,
   ScanTitle,
 } from '../types';
-const announcement = commandDescriptions.announcement;
+
+const announcement = getCommandDescription('announcement');
 
 /**
  * Returns an array with the data of all the scan titles
@@ -31,7 +31,7 @@ export function getScanTitle(titleId: string): ScanTitle | null {
   return null;
 }
 
-export function getTitlesChoices(): CommandOptionChoiceFormat[] {
+export function getTitlesChoices(): { name: string; value: string }[] {
   const choices = [];
   for (const title of scanTitles)
     choices.push({
@@ -45,8 +45,8 @@ export function setCommandTitleOption(
   opt: SlashCommandStringOption,
 ): SlashCommandStringOption {
   opt
-    .setName(announcement.options[0].name)
-    .setDescription(announcement.options[0].description)
+    .setName(announcement.options![0].name)
+    .setDescription(announcement.options![0].description)
     .setRequired(true);
   const choices = getTitlesChoices();
   for (const title of choices) opt.addChoices(title);

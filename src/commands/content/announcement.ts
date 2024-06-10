@@ -1,24 +1,20 @@
 import type { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
 
-import { commandDescriptions } from '../../json';
-import { CommandOptionChoiceFormat } from '../../types';
 import { announcementFunctions, setCommandTitleOption } from '../../utils';
-const {
-  announcement,
-  announcement_release,
-  announcement_title,
-  announcement_recruitment,
-} = commandDescriptions;
+import { getCommandDescription } from '../../json';
 
-type ReleaseTypeOption = {
-  name: string;
-  description: string;
-  choices: CommandOptionChoiceFormat[];
-};
+const announcement = getCommandDescription('announcement');
+const announcement_release = getCommandDescription('announcement_release');
+const announcement_title = getCommandDescription('announcement_title');
+const announcement_recruitment = getCommandDescription(
+  'announcement_recruitment',
+);
 
-const releaseTypeOptionChoices = announcement_release
-  .options[0] as unknown as ReleaseTypeOption;
+const releaseOptions = announcement_release.options!;
+const titleOptions = announcement_title.options!;
+// const recruitmentOptions = announcement_recruitment.options!;
+const releaseTypeOptionChoices = releaseOptions[0].choices!;
 
 export const data = new SlashCommandBuilder()
   .setName(announcement.name)
@@ -27,7 +23,7 @@ export const data = new SlashCommandBuilder()
   // "release" subcommand
   .addSubcommand(sub =>
     sub
-      .setName(announcement_release.subName)
+      .setName(announcement_release.subName!)
       .setDescription(announcement_release.description)
 
       // "title" option
@@ -36,16 +32,16 @@ export const data = new SlashCommandBuilder()
       // "type" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_release.options[0].name)
-          .setDescription(announcement_release.options[0].description)
+          .setName(releaseOptions[0].name)
+          .setDescription(releaseOptions[0].description)
           .addChoices(
             {
-              name: releaseTypeOptionChoices.choices[0].name,
-              value: releaseTypeOptionChoices.choices[0].value,
+              name: releaseTypeOptionChoices[0].name,
+              value: releaseTypeOptionChoices[0].value,
             },
             {
-              name: releaseTypeOptionChoices.choices[1].name,
-              value: releaseTypeOptionChoices.choices[1].value,
+              name: releaseTypeOptionChoices[1].name,
+              value: releaseTypeOptionChoices[1].value,
             },
           )
           .setRequired(true),
@@ -54,103 +50,103 @@ export const data = new SlashCommandBuilder()
       // "numbers" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_release.options[1].name)
-          .setDescription(announcement_release.options[1].description)
+          .setName(releaseOptions[1].name)
+          .setDescription(releaseOptions[1].description)
           .setRequired(true),
       )
 
       // "links" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_release.options[2].name)
-          .setDescription(announcement_release.options[2].description)
+          .setName(releaseOptions[2].name)
+          .setDescription(releaseOptions[2].description)
           .setRequired(true),
       )
 
       // "volume" option
       .addNumberOption(opt =>
         opt
-          .setName(announcement_release.options[3].name)
-          .setDescription(announcement_release.options[3].description),
+          .setName(releaseOptions[3].name)
+          .setDescription(releaseOptions[3].description),
       )
 
       // "description" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_release.options[4].name)
-          .setDescription(announcement_release.options[4].description),
+          .setName(releaseOptions[4].name)
+          .setDescription(releaseOptions[4].description),
       )
 
       // "image" option
       .addAttachmentOption(opt =>
         opt
-          .setName(announcement_release.options[5].name)
-          .setDescription(announcement_release.options[5].description),
+          .setName(releaseOptions[5].name)
+          .setDescription(releaseOptions[5].description),
       )
 
       // "image-url" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_release.options[6].name)
-          .setDescription(announcement_release.options[6].description),
+          .setName(releaseOptions[6].name)
+          .setDescription(releaseOptions[6].description),
       ),
   )
 
   // "title" subcommand
   .addSubcommand(sub =>
     sub
-      .setName(announcement_title.subName)
+      .setName(announcement_title.subName!)
       .setDescription(announcement_title.description)
 
       // "name" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_title.options[0].name)
-          .setDescription(announcement_title.options[0].description)
+          .setName(titleOptions[0].name)
+          .setDescription(titleOptions[0].description)
           .setRequired(true),
       )
 
-      // "lnks" option
+      // "links" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_title.options[1].name)
-          .setDescription(announcement_title.options[1].description)
+          .setName(titleOptions[1].name)
+          .setDescription(titleOptions[1].description)
           .setRequired(true),
       )
 
       // "sinopsys" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_title.options[2].name)
-          .setDescription(announcement_title.options[2].description),
+          .setName(titleOptions[2].name)
+          .setDescription(titleOptions[2].description),
       )
 
       // "comment" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_title.options[3].name)
-          .setDescription(announcement_title.options[3].description),
+          .setName(titleOptions[3].name)
+          .setDescription(titleOptions[3].description),
       )
 
       // "image" option
       .addAttachmentOption(opt =>
         opt
-          .setName(announcement_title.options[4].name)
-          .setDescription(announcement_title.options[4].description),
+          .setName(titleOptions[4].name)
+          .setDescription(titleOptions[4].description),
       )
 
       // "image-url" option
       .addStringOption(opt =>
         opt
-          .setName(announcement_title.options[5].name)
-          .setDescription(announcement_title.options[5].description),
+          .setName(titleOptions[5].name)
+          .setDescription(titleOptions[5].description),
       ),
   )
 
   // "recruitment" subcommand
   .addSubcommand(sub =>
     sub
-      .setName(announcement_recruitment.subName)
+      .setName(announcement_recruitment.subName!)
       .setDescription(announcement_recruitment.description),
   );
 

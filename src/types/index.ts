@@ -16,11 +16,6 @@ export type ScanTitle = {
   fanRole: string;
 };
 
-export type CommandOptionChoiceFormat = {
-  name: string;
-  value: string;
-};
-
 export type EmbedFunctionOptions = {
   role?: Role | '@deleted-role' | '@everyone';
   embeds: APIEmbed[];
@@ -39,6 +34,27 @@ export type CustomNicknameUser = {
   id: string | string[];
   nickname: string;
   polite?: true;
+};
+
+export type CommandDataDescription = {
+  name: string;
+  subName?: string;
+  description: string;
+  category: string;
+  restriction?: 'owner' | 'dev' | 'mod' | 'staff';
+  subcommands?: string[];
+  options?: {
+    name: string;
+    description: string;
+    choices?: {
+      name: string;
+      value: string;
+    }[];
+  }[];
+};
+
+export type CommandDescriptionsJsonType = {
+  [key: string]: CommandDataDescription;
 };
 
 export type addToJsonFN = {

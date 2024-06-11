@@ -46,10 +46,12 @@ export type CommandDataDescription = {
   options?: {
     name: string;
     description: string;
+    type: string;
     choices?: {
       name: string;
       value: string;
     }[];
+    required: boolean;
   }[];
 };
 

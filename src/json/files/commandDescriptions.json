@@ -4,6 +4,72 @@
     "description": "Responde com \"pong\"",
     "category": "Outros"
   },
+  "ban": {
+    "name": "banir",
+    "description": "(mod) Bane um usuário",
+    "restriction": "mod",
+    "options": [
+      {
+        "name": "user",
+        "description": "Usuário a ser banido",
+        "type": "user",
+        "required": true
+      },
+      {
+        "name": "reason",
+        "description": "Razão do banimento",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Moderação"
+  },
+  "kick": {
+    "name": "chutar",
+    "description": "(mod) Chuta um usuário para fora do servidor",
+    "restriction": "mod",
+    "options": [
+      {
+        "name": "usuario",
+        "description": "Usuário a ser chutado",
+        "type": "user",
+        "required": true
+      },
+      {
+        "name": "razao",
+        "description": "Razão pela qual foi chutado",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Moderação"
+  },
+  "timeout": {
+    "name": "castigo",
+    "description": "(mod) Silencia um membro por um tempo determinado",
+    "restriction": "mod",
+    "options": [
+      {
+        "name": "usuario",
+        "description": "Usuário a ser castigado",
+        "type": "user",
+        "required": true
+      },
+      {
+        "name": "duracao",
+        "description": "Duração do castigo",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "razao",
+        "description": "Razão do castigo",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Moderação"
+  },
   "announcement": {
     "name": "anuncio",
     "description": "Manda um anúncio",
@@ -12,7 +78,9 @@
     "options": [
       {
         "name": "obra",
-        "description": "Nome da obra"
+        "description": "Nome da obra",
+        "type": "string",
+        "required": true
       }
     ],
     "category": "Conteúdo"
@@ -26,6 +94,7 @@
       {
         "name": "tipo",
         "description": "Tipo de lançamento",
+        "type": "string",
         "choices": [
           {
             "name": "Capítulo",
@@ -35,31 +104,44 @@
             "name": "Volume",
             "value": "volume"
           }
-        ]
+        ],
+        "required": true
       },
       {
         "name": "numeros",
-        "description": "Números do lançamento (separados por vírgula)"
+        "description": "Números do lançamento (separados por vírgula)",
+        "type": "string",
+        "required": true
       },
       {
         "name": "links",
-        "description": "Links do lançamento"
+        "description": "Links do lançamento",
+        "type": "string",
+        "required": true
       },
       {
         "name": "volume",
-        "description": "Volume do lançamento"
+        "description": "Volume do lançamento",
+        "type": "string",
+        "required": false
       },
       {
         "name": "descricao",
-        "description": "Descrição do lançamento"
+        "description": "Descrição do lançamento",
+        "type": "string",
+        "required": false
       },
       {
         "name": "imagem",
-        "description": "Imagem do lançamento"
+        "description": "Imagem do lançamento",
+        "type": "string",
+        "required": false
       },
       {
         "name": "url-imagem",
-        "description": "URL da imagem do lançamento"
+        "description": "URL da imagem do lançamento",
+        "type": "string",
+        "required": false
       }
     ],
     "category": "Conteúdo"

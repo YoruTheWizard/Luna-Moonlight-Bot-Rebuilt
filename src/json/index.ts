@@ -19,7 +19,7 @@ export const customNicks = customNicksJson as CustomNicknameUser[];
 
 type CommandName = keyof typeof commandDescriptionsJson;
 const commandDescriptions =
-  commandDescriptionsJson as CommandDescriptionsJsonType;
+  commandDescriptionsJson as unknown as CommandDescriptionsJsonType;
 
 export const getCommandDescription = (
   command: CommandName,

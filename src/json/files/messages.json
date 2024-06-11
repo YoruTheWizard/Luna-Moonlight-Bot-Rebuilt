@@ -1,5 +1,15 @@
 {
   "messageSent": "Mensagem enviada!",
   "wrongLinkFormat": "*Opa!* Parece que você mandou os links do jeito errado!\nTente escrever os links no modelo: *\"link.com Nome-do-link emoji\"*.\nOs emojis não são obrigatórios.",
-  "error": "*Algo deu errado... :(*"
+  "error": "*Algo deu errado... :(*",
+  "moderation": {
+    "userNotFound": "Esse usuário não existe!",
+    "noReason": "Nenhuma rasão providenciada",
+    "isOwner": "Esse usuário não pode ser {action} pois é o dono do servidor!",
+    "isBot": "Não é possível {action} um bot!",
+    "timeoutNaN": "Duração do castigo inválida!",
+    "timeoutInvalid": "A duração do castigo deve estar entre 5 segundos e 28 dias!",
+    "requestPositionLower": "Você não pode {action} esse usuário pois possui um cargo maior que o seu!",
+    "botPositionLower": "Eu não posso {action} esse usuário pois possui um cargo maior que o meu!"
+  }
 }

@@ -11,5 +11,10 @@
     "timeoutInvalid": "A duração do castigo deve estar entre 5 segundos e 28 dias!",
     "requestPositionLower": "Você não pode {action} esse usuário pois possui um cargo maior que o seu!",
     "botPositionLower": "Eu não posso {action} esse usuário pois possui um cargo maior que o meu!"
+  },
+  "welcome": {
+    "rules": "Acesse o canal de regras para uma boa convivência com nossos leitores.",
+    "releases": "Novos capítulos ou volumes são anunciados no canal de lançamentos.",
+    "announcements": "Confira o canal de anúncios para ficar por dentro das atualizações na scan!"
   }
 }

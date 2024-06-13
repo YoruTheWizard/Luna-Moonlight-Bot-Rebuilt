@@ -10,7 +10,7 @@ import {
   linksButtonRow,
   sendContentEmbeds,
 } from './content';
-import errorLogger from './errorLogger';
+import { ErrorLogger } from './errorLogger';
 
 const announcement = getCommandDescription('announcement');
 const announcement_release = getCommandDescription('announcement_release');
@@ -69,7 +69,7 @@ export const release: AnnouncementFunc = async interaction => {
     .setAuthor({ name: (titleObj.longNameJP || titleObj.longNameEN) as string })
     .setTitle(`Novo ${type} de ${titleObj.name}`)
     .setDescription(
-      `O${plural} ${type}${plural} ${numStr}${volume ? ` do volume *${volume}*` : ''} já est${plural ? 'ão' : 'á'} disponíve${plural ? 'is' : 'l'}! Venha ver!<${titleObj.emoji || ':tada:'}>`,
+      `O${plural} ${type}${plural} ${numStr}${volume ? ` do volume *${volume}*` : ''} já est${plural ? 'ão' : 'á'} disponíve${plural ? 'is' : 'l'}! Venha ver! ${titleObj.emoji || ':tada:'}`,
     );
 
   if (titleDesc)
@@ -88,7 +88,7 @@ export const release: AnnouncementFunc = async interaction => {
       rows: [linksRow],
     });
   } catch (err) {
-    errorLogger(announcement_release.name, err);
+    ErrorLogger.slash(announcement_release.name, err);
     interaction.reply({ content: messages.error, ephemeral: true });
   }
 };
@@ -128,7 +128,7 @@ export const title: AnnouncementFunc = async interaction => {
       rows: [linksRow],
     });
   } catch (err) {
-    errorLogger('obra', err);
+    ErrorLogger.slash('obra', err);
   }
 };
 

@@ -6,8 +6,8 @@
   },
   "ban": {
     "name": "banir",
-    "description": "(mod) Bane um usuário",
-    "restriction": "mod",
+    "description": "(Admin) Bane um usuário",
+    "restriction": "Admin",
     "options": [
       {
         "name": "user",
@@ -26,8 +26,8 @@
   },
   "kick": {
     "name": "chutar",
-    "description": "(mod) Chuta um usuário para fora do servidor",
-    "restriction": "mod",
+    "description": "(Admin) Chuta um usuário para fora do servidor",
+    "restriction": "Admin",
     "options": [
       {
         "name": "usuario",
@@ -46,8 +46,8 @@
   },
   "timeout": {
     "name": "castigo",
-    "description": "(mod) Silencia um membro por um tempo determinado",
-    "restriction": "mod",
+    "description": "(Admin) Silencia um membro por um tempo determinado",
+    "restriction": "Admin",
     "options": [
       {
         "name": "usuario",
@@ -69,6 +69,42 @@
       }
     ],
     "category": "Moderação"
+  },
+  "welcomechannel": {
+    "name": "canalbemvindo",
+    "description": "(Admin) Mensagens de \"bem-vindo\" e \"adeus\"",
+    "subcommands": ["configurar", "desabilitar", "info"],
+    "restriction": "Admin",
+    "category": "Configuração"
+  },
+  "welcomechannel_configure": {
+    "name": "canalbemvindo configurar",
+    "subName": "configurar",
+    "description": "(Admin) Configura um canal para serem enviadas as mensagens de \"bem-vindo\" e \"adeus\"",
+    "restriction": "Admin",
+    "options": [
+      {
+        "name": "canal",
+        "description": "Canal onde serão enviadas as mensagens",
+        "type": "channel",
+        "required": true
+      }
+    ],
+    "category": "Configuração"
+  },
+  "welcomechannel_disable": {
+    "name": "canalbemvindo desabilitar",
+    "subName": "desabilitar",
+    "description": "(Admin) Desabilita mensagens de bem-vindo e adeus no servidor",
+    "restriction": "Admin",
+    "category": "Configuração"
+  },
+  "welcomechannel_info": {
+    "name": "canalbemvindo info",
+    "subName": "info",
+    "description": "(Admin) Mostra informações sobre mensagens de bem-vindo e adeus no servidor",
+    "restriction": "Admin",
+    "category": "Configuração"
   },
   "announcement": {
     "name": "anuncio",

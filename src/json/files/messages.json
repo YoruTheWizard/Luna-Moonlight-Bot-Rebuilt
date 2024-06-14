@@ -16,5 +16,13 @@
     "rules": "Acesse o canal de regras para uma boa convivência com nossos leitores.",
     "releases": "Novos capítulos ou volumes são anunciados no canal de lançamentos.",
     "announcements": "Confira o canal de anúncios para ficar por dentro das atualizações na scan!"
+  },
+  "welcomeConfig": {
+    "channelExists": "Esse canal já está configurado para mandar as mensagens!",
+    "edit": "Canal de mensagens de bem-vindo reconfigurado para {newChannel}.",
+    "register": "Mensagens de bem-vindo habilitadas para este servidor.\nCanal de mensagens de bem-vindo configurado para {newChannel}.",
+    "notEnabled": "As mensagens de bem-vindo não estão habilitadas neste servidor!",
+    "disable": "Mensagens de bem-vindo desabilitadas neste servidor.",
+    "info": "Servidor: {guild}\nCanal: {channel}"
   }
 }

@@ -41,7 +41,7 @@ export type CommandDataDescription = {
   subName?: string;
   description: string;
   category: string;
-  restriction?: 'owner' | 'dev' | 'mod' | 'staff';
+  restriction?: 'owner' | 'dev' | 'admin' | 'staff';
   subcommands?: string[];
   options?: {
     name: string;

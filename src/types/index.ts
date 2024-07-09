@@ -8,9 +8,9 @@ import {
 export type ScanTitle = {
   id: string;
   name: string;
-  longNameJP?: string;
-  longNameEN?: string;
-  longNamePT?: string;
+  fullNameJP?: string;
+  fullNameEN?: string;
+  fullNamePT?: string;
   color: string;
   emoji: string;
   fanRole: string;

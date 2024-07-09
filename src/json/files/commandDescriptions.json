@@ -103,7 +103,7 @@
     "name": "canalbemvindo info",
     "subName": "info",
     "description": "(Admin) Mostra informações sobre mensagens de bem-vindo e adeus no servidor",
-    "restriction": "Admin",
+    "restriction": "admin",
     "category": "Configuração"
   },
   "reloadCommands": {

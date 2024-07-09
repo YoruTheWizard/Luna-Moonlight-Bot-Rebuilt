@@ -7,7 +7,7 @@
   "ban": {
     "name": "banir",
     "description": "(Admin) Bane um usuário",
-    "restriction": "Admin",
+    "restriction": "admin",
     "options": [
       {
         "name": "user",
@@ -27,7 +27,7 @@
   "kick": {
     "name": "chutar",
     "description": "(Admin) Chuta um usuário para fora do servidor",
-    "restriction": "Admin",
+    "restriction": "admin",
     "options": [
       {
         "name": "usuario",
@@ -47,7 +47,7 @@
   "timeout": {
     "name": "castigo",
     "description": "(Admin) Silencia um membro por um tempo determinado",
-    "restriction": "Admin",
+    "restriction": "admin",
     "options": [
       {
         "name": "usuario",
@@ -74,14 +74,14 @@
     "name": "canalbemvindo",
     "description": "(Admin) Mensagens de \"bem-vindo\" e \"adeus\"",
     "subcommands": ["configurar", "desabilitar", "info"],
-    "restriction": "Admin",
+    "restriction": "admin",
     "category": "Configuração"
   },
   "welcomechannel_configure": {
     "name": "canalbemvindo configurar",
     "subName": "configurar",
     "description": "(Admin) Configura um canal para serem enviadas as mensagens de \"bem-vindo\" e \"adeus\"",
-    "restriction": "Admin",
+    "restriction": "admin",
     "options": [
       {
         "name": "canal",
@@ -96,7 +96,7 @@
     "name": "canalbemvindo desabilitar",
     "subName": "desabilitar",
     "description": "(Admin) Desabilita mensagens de bem-vindo e adeus no servidor",
-    "restriction": "Admin",
+    "restriction": "admin",
     "category": "Configuração"
   },
   "welcomechannel_info": {
@@ -104,6 +104,30 @@
     "subName": "info",
     "description": "(Admin) Mostra informações sobre mensagens de bem-vindo e adeus no servidor",
     "restriction": "Admin",
+    "category": "Configuração"
+  },
+  "reloadCommands": {
+    "name": "recarregarcomandos",
+    "description": "(Dev) Recarrega os comandos",
+    "restriction": "dev",
+    "options": [
+      {
+        "name": "tipo",
+        "description": "Quais comandos recarregar",
+        "type": "string",
+        "choices": [
+          {
+            "name": "Globais",
+            "value": "global"
+          },
+          {
+            "name": "Desenvolvedor",
+            "value": "dev"
+          }
+        ],
+        "required": false
+      }
+    ],
     "category": "Configuração"
   },
   "announcement": {

@@ -1,6 +1,7 @@
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
 import { getCommandDescription } from '../../json';
+import { WelcomeChannel } from '../../utils';
 
 const welcome = getCommandDescription('welcomechannel');
 const welcomeConfig = getCommandDescription('welcomechannel_configure');
@@ -44,5 +45,18 @@ export const options: CommandOptions = {
 };
 
 export async function run({ interaction }: SlashCommandProps): Promise<void> {
-  interaction.reply('Hello');
+  const subcommand = interaction.options.getSubcommand();
+  switch (subcommand) {
+    case welcomeConfig.subName:
+      await WelcomeChannel.register(interaction);
+      break;
+    case welcomeDisable.subName:
+      await WelcomeChannel.erase(interaction);
+      break;
+    case welcomeInfo.subName:
+      await WelcomeChannel.display(interaction);
+      break;
+    default:
+      return;
+  }
 }

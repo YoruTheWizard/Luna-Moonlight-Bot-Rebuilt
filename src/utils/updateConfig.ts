@@ -9,9 +9,10 @@ type UpdateConfigFn = <T extends keyof typeof config>(
 ) => void;
 
 export const updateConfig: UpdateConfigFn = (key, data) => {
-  config[key] = data;
+  const newConfig = { ...config };
+  newConfig[key] = data;
   writeFileSync(
     resolve(__dirname, '..', 'config.json'),
-    JSON.stringify(config, null, 2),
+    JSON.stringify(newConfig, null, 2),
   );
 };

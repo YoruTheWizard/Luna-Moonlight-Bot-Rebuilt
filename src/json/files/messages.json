@@ -23,6 +23,6 @@
     "register": "Mensagens de bem-vindo habilitadas para este servidor.\nCanal de mensagens de bem-vindo configurado para {newChannel}.",
     "notEnabled": "As mensagens de bem-vindo não estão habilitadas neste servidor!",
     "disable": "Mensagens de bem-vindo desabilitadas neste servidor.",
-    "info": "Servidor: {guild}\nCanal: {channel}"
+    "info": "**Servidor:** {guild}\n**Canal:** {channel}"
   }
 }

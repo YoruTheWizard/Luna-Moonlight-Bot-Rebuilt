@@ -36,6 +36,18 @@ export type CustomNicknameUser = {
   polite?: true;
 };
 
+export type ScanBlooper = {
+  message: string;
+  author: string;
+  alias: string;
+  date: string | null;
+};
+
+export type ScanBloopersJsonType = {
+  authors: string[];
+  bloopers: ScanBlooper[];
+};
+
 export type CommandDataDescription = {
   name: string;
   subName?: string;

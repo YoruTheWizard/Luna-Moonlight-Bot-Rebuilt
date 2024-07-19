@@ -6,13 +6,18 @@ import {
   CommandDataDescription,
   CommandDescriptionsJsonType,
   CustomNicknameUser,
+  ScanBlooper,
+  ScanBloopersJsonType,
   ScanTitle,
 } from '../types';
+
+// JSON
 import * as commandDescriptionsJson from './files/commandDescriptions.json';
 import customNicksJson from './files/internal/customNicks.json';
 import scanTitlesJson from './files/internal/scanTitles.json';
 import * as emojisJson from './files/internal/emojis.json';
 import * as messagesJson from './files/messages.json';
+import * as scanBloopersJson from './files/internal/scanBloopers.json';
 
 type CommandName = keyof typeof commandDescriptionsJson;
 type MessageName = keyof typeof messagesJson;
@@ -25,6 +30,8 @@ type MessageFn = <K extends MessageName>(
 
 const commandDescriptions =
   commandDescriptionsJson as unknown as CommandDescriptionsJsonType;
+
+const scanBloopers = scanBloopersJson as ScanBloopersJsonType;
 
 export const scanTitles = scanTitlesJson as ScanTitle[];
 export const customNicks = customNicksJson as CustomNicknameUser[];
@@ -45,4 +52,16 @@ export const addToJson: addToJsonFN = (file, data) => {
   ) as (typeof data)[];
   jsonFile.push(data);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+};
+
+export const getBlooperAuthors = () => scanBloopers.authors;
+
+export const getRandomBlooper = (author?: string): ScanBlooper | null => {
+  if (author && !scanBloopers.authors.includes(author)) return null;
+  let rand: number, blooper: ScanBlooper;
+  do {
+    rand = Math.round(Math.random() * scanBloopers.bloopers.length);
+    blooper = scanBloopers.bloopers[rand];
+  } while (author && blooper.author !== author);
+  return blooper;
 };

@@ -251,5 +251,18 @@
       }
     ],
     "category": "Conteúdo"
+  },
+  "scanBloopers": {
+    "name": "perolasdoservidor",
+    "description": "Manda aleatoriamente uma pérola do servidor",
+    "options": [
+      {
+        "name": "autor",
+        "description": "O autor da pérola",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Conteúdo"
   }
 }

@@ -3,12 +3,14 @@ import { SlashCommandProps } from 'commandkit';
 import {
   getBlooperAuthors,
   getCommandDescription,
+  getMessage,
   getRandomBlooper,
 } from '../../json';
 import { ErrorLogger } from '../../utils';
 
 const scanBloopers = getCommandDescription('scanBloopers');
 const blooperAuthors = getBlooperAuthors();
+const errorMsg = getMessage('error');
 
 const setAuthorOption = (
   opt: SlashCommandStringOption,
@@ -31,9 +33,13 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
   const author =
     interaction.options.getString(scanBloopers.options![0].name) || undefined;
   const blooper = getRandomBlooper(author);
-  if (!blooper) return;
 
   try {
+    if (!blooper) {
+      await interaction.reply({ content: errorMsg, ephemeral: true });
+      return;
+    }
+
     await interaction.reply(
       `"${blooper.message}" ~ ${blooper.alias}. ${blooper.date}.`,
     );

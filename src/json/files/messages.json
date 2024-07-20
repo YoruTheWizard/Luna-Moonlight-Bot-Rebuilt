@@ -2,8 +2,9 @@
   "messageSent": "Mensagem enviada!",
   "wrongLinkFormat": "*Opa!* Parece que você mandou os links do jeito errado!\nTente escrever os links no modelo: *\"link.com Nome-do-link emoji\"*.\nOs emojis não são obrigatórios.",
   "error": "*Algo deu errado... :(*",
+  "userNotFound": "Esse usuário não existe!",
+  "guildOnly": "Esse comando só pode ser usado dentro de um servidor!",
   "moderation": {
-    "userNotFound": "Esse usuário não existe!",
     "noReason": "Nenhuma rasão providenciada",
     "isOwner": "Esse usuário não pode ser {action} pois é o dono do servidor!",
     "isBot": "Não é possível {action} um bot!",

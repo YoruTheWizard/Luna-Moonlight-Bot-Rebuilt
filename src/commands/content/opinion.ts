@@ -9,6 +9,8 @@ import { ErrorLogger } from '../../utils';
 
 const opinion = getCommandDescription('lunasOpinion');
 const message = getMessage('opinion');
+const guildOnly = getMessage('guildOnly');
+const userNotFound = getMessage('userNotFound');
 
 export const data = new SlashCommandBuilder()
   .setName(opinion.name)
@@ -28,7 +30,7 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
   if (!personId) return;
   try {
     if (!interaction.guild) {
-      await interaction.reply({ content: '', ephemeral: true });
+      await interaction.reply({ content: guildOnly, ephemeral: true });
       return;
     }
 
@@ -39,7 +41,7 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
 
     const person = interaction.guild.members.cache.get(personId);
     if (!person) {
-      await interaction.reply({ content: '', ephemeral: true });
+      await interaction.reply({ content: userNotFound, ephemeral: true });
       return;
     }
 

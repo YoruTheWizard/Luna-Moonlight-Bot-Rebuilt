@@ -48,6 +48,11 @@ export type ScanBloopersJsonType = {
   bloopers: ScanBlooper[];
 };
 
+export type Adjective = {
+  adj: string;
+  bad?: boolean;
+};
+
 export type CommandDataDescription = {
   name: string;
   subName?: string;

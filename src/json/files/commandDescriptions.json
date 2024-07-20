@@ -264,5 +264,18 @@
       }
     ],
     "category": "Conteúdo"
+  },
+  "lunasOpinion": {
+    "name": "opiniaodaluna",
+    "description": "Manda aleatoriamente um adjetivo para caracterizar alguém do servidor",
+    "options": [
+      {
+        "name": "pessoa",
+        "description": "A pessoa para dar a opinião",
+        "type": "user",
+        "required": false
+      }
+    ],
+    "category": "Conteúdo"
   }
 }

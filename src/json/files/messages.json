@@ -24,5 +24,10 @@
     "notEnabled": "As mensagens de bem-vindo não estão habilitadas neste servidor!",
     "disable": "Mensagens de bem-vindo desabilitadas neste servidor.",
     "info": "**Servidor:** {guild}\n**Canal:** {channel}"
+  },
+  "opinion": {
+    "myself": "Eu gosto de mim mesma.",
+    "nothing": "Não tenho muito a dizer sobre {person}",
+    "sentence": "Eu acho que {person} é {adj}"
   }
 }

@@ -3,6 +3,7 @@ import path from 'path';
 
 import {
   addToJsonFN,
+  Adjective,
   CommandDataDescription,
   CommandDescriptionsJsonType,
   CustomNicknameUser,
@@ -15,6 +16,7 @@ import {
 import * as commandDescriptionsJson from './files/commandDescriptions.json';
 import customNicksJson from './files/internal/customNicks.json';
 import scanTitlesJson from './files/internal/scanTitles.json';
+import adjectivesJson from './files/internal/adjectives.json';
 import * as emojisJson from './files/internal/emojis.json';
 import * as messagesJson from './files/messages.json';
 import * as scanBloopersJson from './files/internal/scanBloopers.json';
@@ -32,6 +34,7 @@ const commandDescriptions =
   commandDescriptionsJson as unknown as CommandDescriptionsJsonType;
 
 const scanBloopers = scanBloopersJson as ScanBloopersJsonType;
+const adjectives = adjectivesJson as Adjective[];
 
 export const scanTitles = scanTitlesJson as ScanTitle[];
 export const customNicks = customNicksJson as CustomNicknameUser[];
@@ -58,10 +61,19 @@ export const getBlooperAuthors = () => scanBloopers.authors;
 
 export const getRandomBlooper = (author?: string): ScanBlooper | null => {
   if (author && !scanBloopers.authors.includes(author)) return null;
-  let rand: number, blooper: ScanBlooper;
+  let blooper;
   do {
-    rand = Math.round(Math.random() * scanBloopers.bloopers.length);
+    const rand = Math.round(Math.random() * scanBloopers.bloopers.length);
     blooper = scanBloopers.bloopers[rand];
   } while (author && blooper.author !== author);
   return blooper;
+};
+
+export const getRandomAdjective = (good?: true): Adjective => {
+  let adj;
+  do {
+    const rand = Math.floor(Math.random() * adjectives.length);
+    adj = adjectives[rand];
+  } while (good && adj.bad);
+  return adj;
 };

@@ -130,6 +130,11 @@
     ],
     "category": "Configuração"
   },
+  "restart": {
+    "name": "reiniciar",
+    "description": "(Dev) Reinicia o bot",
+    "category": "Configuração"
+  },
   "announcement": {
     "name": "anuncio",
     "description": "Manda um anúncio",

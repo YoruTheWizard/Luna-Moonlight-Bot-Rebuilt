@@ -329,5 +329,25 @@
       }
     ],
     "category": "Conteúdo"
+  },
+  "lunaSays": {
+    "name": "lunadiz",
+    "description": "(Dono) Luna diz algo...",
+    "restriction": "owner",
+    "options": [
+      {
+        "name": "mensagem",
+        "description": "Mensagem da Luna",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "responder",
+        "description": "Id da mensagem para responder",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Outros"
   }
 }

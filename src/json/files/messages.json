@@ -4,6 +4,7 @@
   "error": "*Algo deu errado... :(*",
   "userNotFound": "Esse usuário não existe!",
   "guildOnly": "Esse comando só pode ser usado dentro de um servidor!",
+  "ownerOnly": "Esse comando só pode ser usado pelo Yoru!",
   "moderation": {
     "noReason": "Nenhuma rasão providenciada",
     "isOwner": "Esse usuário não pode ser {action} pois é o dono do servidor!",

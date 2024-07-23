@@ -13,7 +13,10 @@ export const options: CommandOptions = {
   devOnly: true,
 };
 
-export const run = async ({ interaction, client }: SlashCommandProps) => {
+export const run = async ({
+  interaction,
+  client,
+}: SlashCommandProps): Promise<void> => {
   await interaction.reply({ content: 'Boa noite...', ephemeral: true });
   return await restart(interaction.channel!, client);
 };

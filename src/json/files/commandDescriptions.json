@@ -135,6 +135,53 @@
     "description": "(Dev) Reinicia o bot",
     "category": "Configuração"
   },
+  "activity": {
+    "name": "atividade",
+    "description": "(Dev) Configura a atividade do bot",
+    "restriction": "dev",
+    "subcommands": ["configurar", "limpar"],
+    "category": "Configuração"
+  },
+  "activity_set": {
+    "name": "atividade configurar",
+    "subName": "configurar",
+    "description": "(Dev) Configura a atividade do bot",
+    "options": [
+      {
+        "name": "tipo",
+        "description": "O tipo da atividade",
+        "type": "string",
+        "choices": [
+          {
+            "name": "Ouvindo",
+            "value": "listening"
+          },
+          {
+            "name": "Jogando",
+            "value": "playing"
+          },
+          {
+            "name": "Assistindo",
+            "value": "watching"
+          }
+        ],
+        "required": true
+      },
+      {
+        "name": "texto",
+        "description": "O texto da atividade",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "category": "Configuração"
+  },
+  "activity_clear": {
+    "name": "atividade limpar",
+    "subName": "limpar",
+    "description": "(Dev) Limpa a atividade do bot",
+    "category": "Configuração"
+  },
   "announcement": {
     "name": "anuncio",
     "description": "Manda um anúncio",

@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import fs from 'fs';
 import { resolve } from 'path';
 
 import * as config from '../config.json';
@@ -6,13 +6,13 @@ import * as config from '../config.json';
 type UpdateConfigFn = <T extends keyof typeof config>(
   key: T,
   data: (typeof config)[T],
-) => void;
+) => Promise<void>;
 
-export const updateConfig: UpdateConfigFn = (key, data) => {
-  const newConfig = { ...config };
-  newConfig[key] = data;
-  writeFileSync(
-    resolve(__dirname, '..', 'config.json'),
-    JSON.stringify(newConfig, null, 2),
-  );
+export const updateConfig: UpdateConfigFn = async (key, data) => {
+  const filePath = resolve(__dirname, '..', 'config.json');
+  const configObj = JSON.parse(
+    fs.readFileSync(filePath, { encoding: 'utf-8' }),
+  ) as typeof config;
+  configObj[key] = data;
+  fs.writeFileSync(filePath, JSON.stringify(configObj, null, 2));
 };

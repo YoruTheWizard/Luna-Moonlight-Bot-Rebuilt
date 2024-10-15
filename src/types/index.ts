@@ -112,3 +112,15 @@ export type CheckMessageContentOptions = {
   avoid?: string[];
   limit?: number;
 };
+
+export type EventMessage = {
+  name: string;
+  servers: {
+    id: string;
+    channel: string;
+  }[];
+  message: string;
+  cronString: string;
+  typingCooldown?: number;
+  sendCooldown?: number;
+};

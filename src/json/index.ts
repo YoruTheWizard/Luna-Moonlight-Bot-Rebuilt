@@ -4,6 +4,7 @@ import path from 'path';
 // JSON
 import * as commandDescriptionsJson from './files/commandDescriptions.json';
 import customNicksJson from './files/internal/customNicks.json';
+import eventsJson from './files/internal/events.json';
 import scanTitlesJson from './files/internal/scanTitles.json';
 import adjectivesJson from './files/internal/adjectives.json';
 import * as emojisJson from './files/internal/emojis.json';
@@ -18,6 +19,7 @@ import type {
   CommandDescriptionsJsonType,
   CustomNicknameUser,
   Emoji,
+  EventMessage,
   ScanBlooper,
   ScanBloopersJsonType,
   ScanTitle,
@@ -43,6 +45,7 @@ export const scanTitles = scanTitlesJson as ScanTitle[];
 export const customNicks = customNicksJson as CustomNicknameUser[];
 export const messages = messagesJson;
 export const emojis = emojisJson as { [key: string]: Emoji };
+export const events = eventsJson as EventMessage[];
 
 // FUNCTIONS
 export const getCommandDescription: CommandDescFn = command =>

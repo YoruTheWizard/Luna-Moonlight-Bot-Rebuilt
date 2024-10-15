@@ -1,7 +1,10 @@
+import { CommandKit } from 'commandkit';
 import {
   APIActionRowComponent,
   APIButtonComponent,
   APIEmbed,
+  Client,
+  Message,
   Role,
 } from 'discord.js';
 
@@ -14,7 +17,7 @@ export type ScanTitle = {
   color: string;
   emoji: string;
   fanRole: string;
-};
+} & ({ fullNameJP: string } | { fullNameEN: string } | { fullNamePT: string });
 
 export type EmbedFunctionOptions = {
   role?: Role | '@deleted-role' | '@everyone';
@@ -33,7 +36,7 @@ export type ContentLinkObject = {
 export type CustomNicknameUser = {
   id: string | string[];
   nickname: string;
-  polite?: true;
+  polite?: boolean;
 };
 
 export type ScanBlooper = {
@@ -46,6 +49,14 @@ export type ScanBlooper = {
 export type ScanBloopersJsonType = {
   authors: string[];
   bloopers: ScanBlooper[];
+};
+
+export type Emoji = {
+  id: string;
+  triggers?: string[][];
+  avoid?: string[];
+  limit?: number;
+  uncheckable?: boolean;
 };
 
 export type Adjective = {
@@ -79,4 +90,25 @@ export type CommandDescriptionsJsonType = {
 export type addToJsonFN = {
   (file: 'scanTitles', data: ScanTitle): void | never;
   (file: 'customNicks', data: CustomNicknameUser): void | never;
+};
+
+export type MessageCreateEventFn = (
+  message: Message<true>,
+  client: Client<true>,
+  handler: CommandKit,
+) => void;
+
+export type SendMessageOptions = {
+  messageObj: Message<true>;
+  content: any;
+  typingTimeout?: number;
+  answerTimeout?: number;
+  reply?: boolean;
+};
+
+export type CheckMessageContentOptions = {
+  message: string;
+  content: string[][];
+  avoid?: string[];
+  limit?: number;
 };

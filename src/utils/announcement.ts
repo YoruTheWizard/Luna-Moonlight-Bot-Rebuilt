@@ -68,7 +68,7 @@ export abstract class Announcement {
     const releaseEmbed = new EmbedBuilder()
       .setColor(titleObj.color as ColorResolvable)
       .setAuthor({
-        name: (titleObj.longNameJP || titleObj.longNameEN) as string,
+        name: (titleObj.fullNameJP || titleObj.fullNameEN) as string,
       })
       .setTitle(`Novo ${type} de ${titleObj.name}`)
       .setDescription(

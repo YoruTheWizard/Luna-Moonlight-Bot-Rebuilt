@@ -2,8 +2,10 @@
   "messageSent": "Mensagem enviada!",
   "wrongLinkFormat": "*Opa!* Parece que você mandou os links do jeito errado!\nTente escrever os links no modelo: *\"link.com Nome-do-link emoji\"*.\nOs emojis não são obrigatórios.",
   "error": "*Algo deu errado... :(*",
+  "userNotFound": "Esse usuário não existe!",
+  "guildOnly": "Esse comando só pode ser usado dentro de um servidor!",
+  "ownerOnly": "Esse comando só pode ser usado pelo Yoru!",
   "moderation": {
-    "userNotFound": "Esse usuário não existe!",
     "noReason": "Nenhuma rasão providenciada",
     "isOwner": "Esse usuário não pode ser {action} pois é o dono do servidor!",
     "isBot": "Não é possível {action} um bot!",
@@ -16,5 +18,18 @@
     "rules": "Acesse o canal de regras para uma boa convivência com nossos leitores.",
     "releases": "Novos capítulos ou volumes são anunciados no canal de lançamentos.",
     "announcements": "Confira o canal de anúncios para ficar por dentro das atualizações na scan!"
+  },
+  "welcomeConfig": {
+    "channelExists": "Esse canal já está configurado para mandar as mensagens!",
+    "edit": "Canal de mensagens de bem-vindo reconfigurado para {newChannel}.",
+    "register": "Mensagens de bem-vindo habilitadas para este servidor.\nCanal de mensagens de bem-vindo configurado para {newChannel}.",
+    "notEnabled": "As mensagens de bem-vindo não estão habilitadas neste servidor!",
+    "disable": "Mensagens de bem-vindo desabilitadas neste servidor.",
+    "info": "**Servidor:** {guild}\n**Canal:** {channel}"
+  },
+  "opinion": {
+    "myself": "Eu gosto de mim mesma.",
+    "nothing": "Não tenho muito a dizer sobre {person}",
+    "sentence": "Eu acho que {person} é {adj}"
   }
 }

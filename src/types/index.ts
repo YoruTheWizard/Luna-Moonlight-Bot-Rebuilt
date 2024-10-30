@@ -99,16 +99,12 @@ export type MessageCreateEventFn = (
 ) => void;
 
 export type SendMessageOptions = {
-  messageObj: Message<true>;
-  content: any;
   typingTimeout?: number;
   answerTimeout?: number;
   reply?: boolean;
 };
 
 export type CheckMessageContentOptions = {
-  message: string;
-  content: string[][];
   avoid?: string[];
   limit?: number;
 };

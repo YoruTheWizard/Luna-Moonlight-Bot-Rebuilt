@@ -4,6 +4,7 @@ import {
   checkMessageContent,
   getCurrentMoment,
   messageIntoArray,
+  normal,
   sendTextMessage,
   shouldSendMessage,
 } from '../../utils';
@@ -17,73 +18,83 @@ const sendGreeting: MessageCreateEventFn = async message => {
   const now = getCurrentMoment();
   let reply: string = '';
 
-  if (!msg.some(i => ['luna', 'luninha'].includes(i))) return;
-  if (msg.length <= 1) return;
+  if (
+    !msg.some(i =>
+      ['luna', 'luninha'].includes(i.includes('-') ? i.split('-')[0] : i),
+    )
+  )
+    return;
+  if (!msg.length) return;
 
   const greet = ['bom', 'boa', 'bah', 'good', 'buenos', 'buenas'];
 
+  // HELLO
+  if (
+    msg.some(i =>
+      [normal('olá'), 'ola', 'oi', 'konnichiwa', "kon'nichiwa"].includes(i),
+    )
+  ) {
+    reply = `${polite ? 'Olá' : 'Oi'}, **${username}**!`;
+  }
+
   // GOOD MORNING
   if (
-    msg.some(i => ['bodia', 'ohayou', 'ohayo'].includes(i)) ||
-    checkMessageContent({
-      message: message.content,
-      content: [greet, ['dia', 'morning', 'day', 'días', 'dias']],
-    })
+    msg.some(i => ['bodia', 'ohayou', 'ohayo', normal('ohayō')].includes(i)) ||
+    checkMessageContent(message.content, [
+      greet,
+      ['dia', 'morning', 'day', normal('días'), 'dias'],
+    ])
   ) {
     if (now === 'night') reply = '*Mas já está de noite...*';
     else reply = `Bom dia, **${username}**!`;
   }
 
   // GOOD AFTERNOON
-  else if (
+  if (
     msg.includes('botarde') ||
-    checkMessageContent({
-      message: message.content,
-      content: [greet, ['tarde', 'afternoon', 'tardes']],
-    })
+    checkMessageContent(message.content, [
+      greet,
+      ['tarde', 'afternoon', 'tardes'],
+    ])
   ) {
-    if (now === 'morning') reply = '*Mas ainda é manhã...*';
-    else if (now === 'night') reply = '*Mas já está de noite...*';
-    else reply = `Boa tarde, **${username}**!`;
+    if (!reply) {
+      if (now === 'morning') reply = '*Mas ainda é manhã...*';
+      else if (now === 'night') reply = '*Mas já está de noite...*';
+      else reply = `Boa tarde, **${username}**!`;
+    } else if (reply.includes('dia') && now === 'afternoon')
+      reply = `Boa tarde, **${username}**!`;
   }
 
   // GOOD EVENING/NIGHT
-  else if (
+  if (
     msg.some(i =>
-      ['bonoite', 'oyasumi', 'oyasuminasai', 'konbanwa'].includes(i),
+      ['bonoite', 'oyasumi', 'oyasuminasai', 'konbanwa', "konban'wa"].includes(
+        i,
+      ),
     ) ||
-    checkMessageContent({
-      message: message.content,
-      content: [greet, ['noite', 'night', 'evening', 'noches']],
-    })
+    checkMessageContent(message.content, [
+      greet,
+      ['noite', 'night', 'evening', 'noches'],
+    ])
   ) {
-    if (now !== 'night') reply = '*Mas ainda nem é noite...*';
-    else reply = `Boa noite, **${username}**!`;
-  }
-
-  // HELLO
-  else if (
-    msg.some(i => ['olá', 'ola', 'oi', 'konnichiwa', "kon'nichiwa"].includes(i))
-  ) {
-    reply = `${polite ? 'Olá' : 'Oi'}, **${username}**!`;
+    if (!reply || reply.includes('...')) {
+      if (now !== 'night') reply = '*Mas ainda nem é noite...*';
+      else reply = `Boa noite, **${username}**!`;
+    }
   }
 
   // HOW ARE YOU
   if (
     reply &&
     (msg.some(i => ['ogenki', 'genki'].includes(i)) ||
-      checkMessageContent({
-        message: message.content,
-        content: [['como'], ['está', 'esta', 'vai']],
-      }))
+      checkMessageContent(message.content, [
+        ['como'],
+        [normal('está'), 'esta', 'vai'],
+      ]))
   )
     reply = reply + ' Estou bem, e você?';
 
-  if (reply)
-    return sendTextMessage({
-      messageObj: message,
-      content: reply,
-    });
+  if (reply) return sendTextMessage(message, reply);
 };
 
 export default sendGreeting;

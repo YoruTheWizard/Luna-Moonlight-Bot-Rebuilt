@@ -3,6 +3,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   ChatInputCommandInteraction,
+  Message,
   SlashCommandStringOption,
   User,
 } from 'discord.js';
@@ -102,9 +103,20 @@ export async function sendContentEmbeds(
 }
 
 export function getCurrentDate(): Date {
-  return new Date(
-    new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-  );
+  const rawDateString = new Date().toLocaleString([], {
+    timeZone: 'America/Sao_Paulo',
+    hour12: false,
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  });
+  const [date, hour] = rawDateString.split(', ');
+  const reverseDate = date.split('/').reverse().join('-');
+  const dateString = `${reverseDate}T${hour}.000Z`;
+  return new Date(dateString);
 }
 
 export function getCurrentMoment(): 'morning' | 'afternoon' | 'night' {
@@ -120,13 +132,20 @@ export function messageIntoArray(message: string): string[] {
     .normalize('NFD')
     .toLowerCase()
     .replace(regexp, '')
-    .split(/\s+/);
+    .split(/\s+/)
+    .map(w => {
+      if (w.includes('luna') && w.includes('-')) return w.split('-')[0];
+      return w;
+    });
 }
 
 export function checkMessageContent(
-  options: CheckMessageContentOptions,
+  message: string,
+  content: string[][],
+  options?: CheckMessageContentOptions,
 ): boolean {
-  const { message, content, avoid, limit } = options;
+  const limit = options?.limit;
+  const avoid = options?.avoid;
   const msg = messageIntoArray(message);
   if (limit && msg.length > limit) return false;
   if (avoid && msg.some(i => avoid.includes(i))) return false;
@@ -135,15 +154,13 @@ export function checkMessageContent(
 }
 
 export async function sendTextMessage(
-  options: SendMessageOptions,
+  messageObj: Message<true>,
+  content: any,
+  options?: SendMessageOptions,
 ): Promise<void> {
-  const {
-    messageObj,
-    content,
-    typingTimeout = 1000,
-    answerTimeout = content.length * 100,
-    reply = true,
-  } = options;
+  const typingTimeout = options?.typingTimeout || 1000;
+  const answerTimeout = options?.answerTimeout || content.length * 100;
+  const reply = options?.reply !== undefined ? options.reply : true;
 
   return new Promise<void>(resolve => {
     setTimeout(() => {
@@ -162,4 +179,8 @@ export function shouldSendMessage(author: User): boolean {
   if (now.getHours() < 6 || now.getHours() >= 22) return false;
   if (author.bot) return false;
   return true;
+}
+
+export function normal(text: string): string {
+  return text.normalize('NFD');
 }

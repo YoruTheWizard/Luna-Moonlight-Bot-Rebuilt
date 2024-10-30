@@ -4,8 +4,8 @@ import cron from 'node-cron';
 import { events } from '../../json';
 
 export default function (c: Client<true>) {
+  const eventNames: string[] = [];
   let cooldown = 0;
-  console.log('Scheduled events:');
   for (const event of events) {
     for (const server of event.servers) {
       const typingCooldown = cooldown + (event.typingCooldown || 1000);
@@ -35,7 +35,9 @@ export default function (c: Client<true>) {
         )
         .start();
       cooldown += sendCooldown;
-      console.log(` - ${event.name}`);
+      eventNames.push(event.name);
     }
   }
+  console.log(`Scheduled events: ${eventNames.length ? '' : 'none'}`)
+  if (eventNames.length) eventNames.map(event => console.log(` - ${event}`));
 }

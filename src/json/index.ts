@@ -161,3 +161,11 @@ export const getNickname = (userId: string): CustomNicknameUser | null => {
   }
   return null;
 };
+
+/**
+ * `[ JSON ]`
+ *
+ * Checks if given user id belongs to Luna's dad.
+ */
+export const isDad = (userId: string): boolean =>
+  customNicks[0].id.includes(userId);

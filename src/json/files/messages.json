@@ -28,8 +28,9 @@
     "info": "**Servidor:** {guild}\n**Canal:** {channel}"
   },
   "opinion": {
-    "myself": "Eu gosto de mim mesma.",
-    "nothing": "Não tenho muito a dizer sobre {person}",
+    "myself": "Eu gosto de mim mesma",
+    "dad": "Eu amo muito o meu pai {heart}",
+    "nothing": "Hmm... Não tenho muito a dizer sobre {person}",
     "sentence": "Eu acho que {person} é {adj}"
   }
 }

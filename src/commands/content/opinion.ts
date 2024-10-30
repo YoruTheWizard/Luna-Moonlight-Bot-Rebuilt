@@ -1,8 +1,11 @@
 import { SlashCommandBuilder } from 'discord.js';
 import {
   getCommandDescription,
+  getEmoji,
   getMessage,
+  getNickname,
   getRandomAdjective,
+  isDad,
 } from '../../json';
 import { SlashCommandProps } from 'commandkit';
 import { Logger } from '../../utils';
@@ -23,7 +26,10 @@ export const data = new SlashCommandBuilder()
 
 // export const options = {};
 
-export async function run({ interaction }: SlashCommandProps): Promise<void> {
+export async function run({
+  interaction,
+  client,
+}: SlashCommandProps): Promise<void> {
   const personId =
     interaction.options.getUser(opinion.options![0].name)?.id ||
     interaction.member?.user.id;
@@ -34,8 +40,15 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       return;
     }
 
-    if (personId === interaction.guild!.members.me!.id) {
+    if (personId === client.user.id) {
       await interaction.reply(message.myself);
+      return;
+    }
+
+    if (isDad(personId)) {
+      await interaction.reply(
+        message.dad.replace('{heart}', getEmoji('heart').id),
+      );
       return;
     }
 
@@ -45,17 +58,18 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       return;
     }
 
+    const customNick = getNickname(personId);
+    const personName = customNick?.nickname || person.displayName;
+
     const adjective = getRandomAdjective();
     if (adjective.adj === 'nada') {
-      await interaction.reply(
-        message.nothing.replace('{person}', person.displayName),
-      );
+      await interaction.reply(message.nothing.replace('{person}', personName));
       return;
     }
 
     await interaction.reply(
       message.sentence
-        .replace('{person}', person.displayName)
+        .replace('{person}', personName)
         .replace('{adj}', adjective.adj),
     );
   } catch (err) {

@@ -1,7 +1,7 @@
 import { ActivityType, ChatInputCommandInteraction, Client } from 'discord.js';
 import { getCommandDescription } from '../json';
 import { updateConfig } from './updateConfig';
-import { ErrorLogger } from './errorLogger';
+import { Logger } from './logger';
 
 const activitySet = getCommandDescription('activity_set');
 
@@ -38,13 +38,15 @@ export abstract class Activity {
       }
       client.user.setActivity({ type: actType, name: text });
       await updateConfig('activity', { text, type });
-      console.log(`Changed bot activity to: "${type.toUpperCase()} ${text}".`);
+      Logger.success(
+        `Changed bot activity to: "${type.toUpperCase()} ${text}".`,
+      );
       await interaction.reply({
         content: `Atividade alterada para "**${type.toUpperCase()}** ${text}"`,
         ephemeral: true,
       });
     } catch (err) {
-      ErrorLogger.slash('atividade configurar', err);
+      Logger.error('slash', 'atividade configurar', err);
     }
   };
 
@@ -52,13 +54,13 @@ export abstract class Activity {
     try {
       client.user.setPresence({ activities: [] });
       await updateConfig('activity', { text: '', type: '' });
-      console.log('Cleared bot activity');
+      Logger.success('Cleared bot activity');
       await interaction.reply({
         content: `Atividade apagada`,
         ephemeral: true,
       });
     } catch (err) {
-      ErrorLogger.slash('atividade limpar', err);
+      Logger.error('slash', 'atividade limpar', err);
     }
   };
 }

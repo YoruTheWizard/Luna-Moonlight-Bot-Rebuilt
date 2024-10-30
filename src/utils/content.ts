@@ -16,7 +16,6 @@ import type {
   ScanTitle,
   SendMessageOptions,
 } from '../types';
-import { ErrorLogger } from './errorLogger';
 
 const announcement = getCommandDescription('announcement');
 

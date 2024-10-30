@@ -5,7 +5,7 @@ import {
   getRandomAdjective,
 } from '../../json';
 import { SlashCommandProps } from 'commandkit';
-import { ErrorLogger } from '../../utils';
+import { Logger } from '../../utils';
 
 const opinion = getCommandDescription('lunasOpinion');
 const message = getMessage('opinion');
@@ -59,6 +59,6 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
         .replace('{adj}', adjective.adj),
     );
   } catch (err) {
-    ErrorLogger.slash('opiniaodaluna', err);
+    Logger.error('slash', 'opiniaodaluna', err);
   }
 }

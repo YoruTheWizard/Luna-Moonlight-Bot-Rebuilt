@@ -1,8 +1,9 @@
 /*
   Reset = "\x1b[0m"
-  Bright = "\x1b[1m"
+  Bold = "\x1b[1m"
   Dim = "\x1b[2m"
-  Underscore = "\x1b[4m"
+  Reset Bold and Dim = "\x1b[2m"
+  Underline = "\x1b[4m"
   Blink = "\x1b[5m"
   Reverse = "\x1b[7m"
   Hidden = "\x1b[8m"
@@ -50,8 +51,11 @@ export const consoleFormat = {
   b: '\x1b[1m',
   /** Dim */
   d: '\x1b[2m',
+  /** Reset bold and dim */
+  rb: '\x1b[22m',
   /** Underlined */
   u: '\x1b[4m',
+
   // FOREGROUND COLORS
   /** Foreground Red */
   fr: '\x1b[31m',
@@ -59,5 +63,10 @@ export const consoleFormat = {
   fg: '\x1b[32m',
   /** Foreground White */
   fw: '\x1b[37m',
+
   // BACKGROUND COLORS
+
+  // CUSTOM BITS
+  success: '\x1b[1m\x1b[32m[✓]\x1b[0m',
+  error: '\x1b[1m\x1b[31m[!]\x1b[0m',
 };

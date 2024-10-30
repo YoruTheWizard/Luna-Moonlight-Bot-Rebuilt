@@ -3,7 +3,7 @@ import {
   ChatInputCommandInteraction,
   GuildBasedChannel,
 } from 'discord.js';
-import { ErrorLogger } from './errorLogger';
+import { Logger } from './logger';
 import { getCommandDescription, getMessage } from '../json';
 import { welcomeOn } from '../config.json';
 import { updateConfig } from './updateConfig';
@@ -48,7 +48,7 @@ export abstract class WelcomeChannel {
       const msg = welcomeMsg.register.replace('{newChannel}', newChannel.name);
       await interaction.editReply(msg);
     } catch (err) {
-      ErrorLogger.slash('welcomechannel configure', err);
+      Logger.error('slash', 'welcomechannel configure', err);
     }
   };
   static erase: WelcomeFunc = async interaction => {
@@ -70,7 +70,7 @@ export abstract class WelcomeChannel {
 
       await interaction.editReply(welcomeMsg.notEnabled);
     } catch (err) {
-      ErrorLogger.slash('welcomechannel disable', err);
+      Logger.error('slash', 'welcomechannel disable', err);
     }
   };
 
@@ -95,7 +95,7 @@ export abstract class WelcomeChannel {
         .replace('{channel}', channel.name);
       await interaction.editReply(msg);
     } catch (err) {
-      ErrorLogger.slash('welcomeconfig info', err);
+      Logger.error('slash', 'welcomeconfig info', err);
     }
   };
 }

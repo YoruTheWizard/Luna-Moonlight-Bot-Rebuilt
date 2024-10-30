@@ -4,7 +4,7 @@ import ms from 'ms';
 import { default as prettyMs } from 'pretty-ms';
 
 import { getCommandDescription, getMessage } from '../../json';
-import { ErrorLogger } from '../../utils';
+import { Logger } from '../../utils';
 
 const timeout = getCommandDescription('timeout');
 const modMessages = getMessage('moderation');
@@ -118,7 +118,7 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       );
     }
   } catch (err) {
-    ErrorLogger.slash('castigo', err);
+    Logger.error('slash', 'castigo', err);
   }
 }
 

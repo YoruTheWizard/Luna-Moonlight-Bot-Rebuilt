@@ -1,22 +1,22 @@
 import { Client, TextBasedChannel } from 'discord.js';
 import start from '..';
-import { ErrorLogger } from './errorLogger';
+import { Logger } from './logger';
 
 export const restart = async (
   channel: TextBasedChannel,
   client: Client,
 ): Promise<void> => {
   try {
-    console.log('Restarting...');
+    Logger.success('Restarting...');
     channel
       .send('Reiniciando...')
       .then(() => client.destroy())
       .then(() => {
         start();
-        console.log('Restarted successfully');
+        Logger.success('Restarted successfully');
       });
     return;
   } catch (err) {
-    ErrorLogger.event('reiniciar', err);
+    Logger.error('event', 'reiniciar', err);
   }
 };

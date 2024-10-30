@@ -6,7 +6,7 @@ import {
   getMessage,
   getRandomBlooper,
 } from '../../json';
-import { ErrorLogger } from '../../utils';
+import { Logger } from '../../utils';
 
 const scanBloopers = getCommandDescription('scanBloopers');
 const blooperAuthors = getBlooperAuthors();
@@ -44,6 +44,6 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       `"${blooper.message}" ~ ${blooper.alias}. ${blooper.date}.`,
     );
   } catch (err) {
-    ErrorLogger.slash('perolasdoservidor', err);
+    Logger.error('slash', 'perolasdoservidor', err);
   }
 }

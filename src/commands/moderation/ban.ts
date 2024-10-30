@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { getCommandDescription, getMessage } from '../../json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { ErrorLogger } from '../../utils';
+import { Logger } from '../../utils';
 
 const ban = getCommandDescription('ban');
 const modMessages = getMessage('moderation');
@@ -77,7 +77,7 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       content: `${user.username} foi banido.\n${reason ? `Razão: ${reason}` : 'Nenhuma razão providenciada.'}`,
     });
   } catch (err) {
-    ErrorLogger.slash('banir', err);
+    Logger.error('slash', 'banir', err);
   }
 }
 

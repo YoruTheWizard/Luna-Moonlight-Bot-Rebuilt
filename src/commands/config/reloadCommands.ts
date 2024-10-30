@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { getCommandDescription } from '../../json';
-import { ErrorLogger } from '../../utils';
+import { Logger, consoleFormat as cf } from '../../utils';
 
 const reloadCmd = getCommandDescription('reloadCommands');
 
@@ -61,9 +61,9 @@ export const run = async ({
     await interaction.deferReply();
     await handler.reloadCommands(type);
 
-    console.log(`${respEng} commands reloaded.`);
+    Logger.success(`${respEng} commands reloaded.`);
     await interaction.editReply(`Comandos${resp} recarregados.`);
   } catch (err) {
-    ErrorLogger.slash('recarregarcomandos', err);
+    Logger.error('slash', 'recarregarcomandos', err);
   }
 };

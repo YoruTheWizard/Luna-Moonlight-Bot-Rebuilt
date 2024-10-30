@@ -2,7 +2,7 @@ import { Client, TextBasedChannel } from 'discord.js';
 import * as config from '../../config.json';
 import cron from 'node-cron';
 import { events } from '../../json';
-import { consoleFormat as cf } from '../../utils';
+import { consoleFormat as cf, Logger } from '../../utils';
 
 export default function (c: Client<true>) {
   const eventNames: string[] = [];
@@ -39,8 +39,8 @@ export default function (c: Client<true>) {
       eventNames.push(event.name);
     }
   }
-  console.log(
+  Logger.log(
     `> ${cf.b}Scheduled events:${cf.r} ${eventNames.length ? '' : 'none'}`,
   );
-  if (eventNames.length) eventNames.map(event => console.log(`  - ${event}`));
+  if (eventNames.length) eventNames.map(event => Logger.log(`  - ${event}`));
 }

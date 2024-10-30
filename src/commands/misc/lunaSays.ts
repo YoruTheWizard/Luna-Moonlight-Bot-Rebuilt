@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { getCommandDescription, getMessage } from '../../json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { ErrorLogger } from '../../utils';
+import { Logger } from '../../utils';
 
 const lunaSays = getCommandDescription('lunaSays');
 const msgSent = getMessage('messageSent');
@@ -46,6 +46,6 @@ export const run = async ({
     } else await interaction.channel?.send(message);
     await interaction.reply({ content: msgSent, ephemeral: true });
   } catch (err) {
-    ErrorLogger.slash('lunadiz', err);
+    Logger.error('slash', 'lunadiz', err);
   }
 };

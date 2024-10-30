@@ -1,6 +1,6 @@
 export * from './announcement';
 export * from './content';
-export * from './errorLogger';
+export * from './logger';
 export * from './embeds';
 export * from './updateConfig';
 export * from './welcomeChannel';

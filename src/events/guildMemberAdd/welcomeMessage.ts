@@ -1,6 +1,6 @@
 import { GuildMember, TextBasedChannel } from 'discord.js';
 import { welcomeOn } from '../../config.json';
-import { EmbedGenerator, ErrorLogger } from '../../utils';
+import { EmbedGenerator, Logger } from '../../utils';
 
 export default async function (member: GuildMember) {
   try {
@@ -24,6 +24,6 @@ export default async function (member: GuildMember) {
     )! as TextBasedChannel;
     channel.send({ content: `${member}`, embeds: [welcomeEmbed] });
   } catch (err) {
-    ErrorLogger.event('sending welcome message', err);
+    Logger.error('event', 'sending welcome message', err);
   }
 }

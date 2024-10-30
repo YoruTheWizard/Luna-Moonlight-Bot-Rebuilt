@@ -10,7 +10,7 @@ import {
   linksButtonRow,
   sendContentEmbeds,
 } from './content';
-import { ErrorLogger } from './errorLogger';
+import { Logger } from './logger';
 
 const announcement = getCommandDescription('announcement');
 const announcement_release = getCommandDescription('announcement_release');
@@ -91,7 +91,7 @@ export abstract class Announcement {
         rows: [linksRow],
       });
     } catch (err) {
-      ErrorLogger.slash(announcement_release.name, err);
+      Logger.error('slash', announcement_release.name, err);
       interaction.reply({ content: messages.error, ephemeral: true });
     }
   };
@@ -132,7 +132,7 @@ export abstract class Announcement {
         rows: [linksRow],
       });
     } catch (err) {
-      ErrorLogger.slash('obra', err);
+      Logger.error('slash', 'obra', err);
     }
   };
 

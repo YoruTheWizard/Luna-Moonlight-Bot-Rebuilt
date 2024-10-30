@@ -1,5 +1,6 @@
 import { ActivityType, Client } from 'discord.js';
 import { activity } from '../../config.json';
+import { consoleFormat as cf } from '../../utils';
 
 export default function (c: Client<true>) {
   if (!activity.type) c.user.setActivity();
@@ -20,6 +21,6 @@ export default function (c: Client<true>) {
     }
     c.user.setActivity({ name: activity.text, type });
   }
-  const msg = `Activity: ${activity.type ? `${activity.type.toUpperCase()} ${activity.text}` : 'none'}`;
+  const msg = `> ${cf.b}Activity:${cf.r} ${activity.type ? `${activity.type.toUpperCase()} ${activity.text}` : 'none'}`;
   console.log(msg);
 }

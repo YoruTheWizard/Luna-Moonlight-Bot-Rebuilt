@@ -16,10 +16,13 @@ import type {
   ScanTitle,
   SendMessageOptions,
 } from '../types';
+import { ErrorLogger } from './errorLogger';
 
 const announcement = getCommandDescription('announcement');
 
 /**
+ * `[ Content ]`
+ *
  * Returns an array with the data of all the scan titles
  */
 export function getAllScanTitles(): ScanTitle[] {
@@ -27,6 +30,8 @@ export function getAllScanTitles(): ScanTitle[] {
 }
 
 /**
+ * `[ Content ]`
+ *
  * Returns the data of a scan title. If the given *id* does not match any title, returns `null`
  * @param titleId The id of the title to get
  */
@@ -35,6 +40,11 @@ export function getScanTitle(titleId: string): ScanTitle | null {
   return null;
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Returns the choice objects for all titles, ready for the announcement function object.
+ */
 export function getTitlesChoices(): { name: string; value: string }[] {
   const choices = [];
   for (const title of scanTitles)
@@ -45,6 +55,12 @@ export function getTitlesChoices(): { name: string; value: string }[] {
   return choices;
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Sets the "title" option for the announcement function.
+ * @param opt the option object
+ */
 export function setCommandTitleOption(
   opt: SlashCommandStringOption,
 ): SlashCommandStringOption {
@@ -57,6 +73,12 @@ export function setCommandTitleOption(
   return opt;
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Returns an array of link objects.
+ * @param linksText the raw text value from the "links" option
+ */
 export function linkListTreater(linksText: string): ContentLinkObject[] {
   const links: ContentLinkObject[] = [];
   const splitLinks = linksText.split(', ');
@@ -73,6 +95,12 @@ export function linkListTreater(linksText: string): ContentLinkObject[] {
   return links;
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Returns an Action Row Component of links for announcement embeds.
+ * @param links the list of link objects
+ */
 export function linksButtonRow(links: ContentLinkObject[]) {
   const buttons: ButtonBuilder[] = [];
   for (const link of links) {
@@ -86,6 +114,13 @@ export function linksButtonRow(links: ContentLinkObject[]) {
   return new ActionRowBuilder<ButtonBuilder>().setComponents(buttons).toJSON();
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Sends an embed message on the channel the interaction was sent.
+ * @param interaction the interaction object
+ * @param options function options
+ */
 export async function sendContentEmbeds(
   interaction: ChatInputCommandInteraction,
   options: EmbedFunctionOptions,
@@ -102,6 +137,11 @@ export async function sendContentEmbeds(
   } else interaction.reply(messageOptions);
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Gets current date in Brasilia time.
+ */
 export function getCurrentDate(): Date {
   const rawDateString = new Date().toLocaleString([], {
     timeZone: 'America/Sao_Paulo',
@@ -117,8 +157,16 @@ export function getCurrentDate(): Date {
   const reverseDate = date.split('/').reverse().join('-');
   const dateString = `${reverseDate}T${hour}.000Z`;
   return new Date(dateString);
+  // return new Date(
+  //   new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }),
+  // );
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Gets current period of the day.
+ */
 export function getCurrentMoment(): 'morning' | 'afternoon' | 'night' {
   const now = getCurrentDate();
   if (now.getHours() >= 5 && now.getHours() < 12) return 'morning';
@@ -126,6 +174,12 @@ export function getCurrentMoment(): 'morning' | 'afternoon' | 'night' {
   return 'night';
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Splits a message into an array of strings, normalizing and ignoring certain symbols.
+ * @param message the message to split
+ */
 export function messageIntoArray(message: string): string[] {
   const regexp = /[?!,;\.\:\\\/\(\)\[\]\{\}]/g;
   return message
@@ -139,6 +193,14 @@ export function messageIntoArray(message: string): string[] {
     });
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Returns `true` if the message contains the given content, otherwise returns `false`.
+ * If given "avoid" value, returns `false` if the message contain at least one of them.
+ * If given "limit" value, returns `false` if the message is longer than de limit.
+ * @param options function options
+ */
 export function checkMessageContent(
   message: string,
   content: string[][],
@@ -153,6 +215,12 @@ export function checkMessageContent(
   return content.every(row => msg.some(i => row.includes(i)));
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Sends a text message.
+ * @param options function options
+ */
 export async function sendTextMessage(
   messageObj: Message<true>,
   content: any,
@@ -174,6 +242,12 @@ export async function sendTextMessage(
   });
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Checks if some message should be responded.
+ * @param author the user who sent the message
+ */
 export function shouldSendMessage(author: User): boolean {
   const now = getCurrentDate();
   if (now.getHours() < 6 || now.getHours() >= 22) return false;
@@ -181,6 +255,14 @@ export function shouldSendMessage(author: User): boolean {
   return true;
 }
 
+/**
+ * `[ Content ]`
+ *
+ * Normalizes texts with special characters to compare with treated messages.
+ *
+ * (Note: always use it when writing text with accented characters)
+ * @param text text to normalize
+ */
 export function normal(text: string): string {
   return text.normalize('NFD');
 }

@@ -6,4 +6,5 @@ export * from './updateConfig';
 export * from './welcomeChannel';
 export * from './restart';
 export * from './activity';
+export * from './consoleFormat';
 export const hello = 'Hello world!';

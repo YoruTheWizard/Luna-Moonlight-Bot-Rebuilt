@@ -7,6 +7,9 @@ import {
   Message,
   Role,
 } from 'discord.js';
+import { ImageGenerateParams } from 'openai/resources';
+import { BaseResponse } from 'serpapi';
+import { DrawImageSize } from './enum';
 
 export type ScanTitle = {
   id: string;
@@ -120,3 +123,35 @@ export type EventMessage = {
   typingCooldown?: number;
   sendCooldown?: number;
 };
+
+export type DrawImageData = {
+  imageDescription: string;
+  image: {
+    url: string;
+  };
+} | null;
+
+export type DrawImageOptions = Omit<ImageGenerateParams, 'prompt' | 'user'>;
+
+export type DrawImageFn = (
+  imageDescription: string,
+  options?: Omit<DrawImageOptions, 'size'> & {
+    shape?: DrawImageSize;
+  },
+) => Promise<DrawImageData>;
+
+export type SearchOptions = {
+  location: string;
+  hl: string;
+  gl: string;
+};
+
+export type SearchResult = {
+  query: string;
+  searchResults: BaseResponse;
+};
+
+export type SearchFn = (
+  q: string,
+  options?: SearchOptions,
+) => Promise<SearchResult>;

@@ -6,13 +6,14 @@ import {
 } from '@google/generative-ai';
 import { AIConfig } from '../config.json';
 import getInstructions from '../utils/AI/getInstructions';
+const geminiConfig = AIConfig.gemini;
 
 export default abstract class GoogleAI {
   private static AI_INSTANCE: GenerativeModel | null = null;
   private static CHAT: ChatSession | null = null;
 
   /**
-   * `[ AI ]`
+   * `[ AI: Google ]`
    *
    * Initiates new Google Generative AI model instance with the configurations provided in `config.json` and returns the model instance.
    * @param history Chat history (optional)
@@ -23,7 +24,7 @@ export default abstract class GoogleAI {
 
     // Get model instance
     GoogleAI.AI_INSTANCE = genAI.getGenerativeModel({
-      model: AIConfig.model,
+      model: geminiConfig.model,
     });
 
     // Start chat
@@ -37,7 +38,7 @@ export default abstract class GoogleAI {
           },
         ],
       },
-      generationConfig: AIConfig.options,
+      generationConfig: geminiConfig.options,
     });
 
     // Return instance

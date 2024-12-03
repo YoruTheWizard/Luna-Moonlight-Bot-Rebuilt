@@ -247,9 +247,18 @@ export async function sendTextMessage(
  * `[ Content ]`
  *
  * Checks if some message should be responded.
+ *
  * @param author the user who sent the message
+ * @param content content of the message (optional)
+ * @param channelId id of the channel in which the message was sent
  */
-export function shouldSendMessage(author: User): boolean {
+export function shouldSendMessage(
+  author: User,
+  content?: string,
+  channelId?: string,
+): boolean {
+  if (content && isIgnore(content)) return false;
+  if (channelId && channelId === AIConfig.gemini.guild.channel) return false;
   const now = getCurrentDate();
   if (now.getHours() < 6 || now.getHours() >= 22) return false;
   if (author.bot) return false;

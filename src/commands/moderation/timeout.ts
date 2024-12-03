@@ -3,10 +3,12 @@ import { CommandOptions, SlashCommandProps } from 'commandkit';
 import ms from 'ms';
 import { default as prettyMs } from 'pretty-ms';
 
-import { getCommandDescription, messages } from '../../json';
-import errorLogger from '../../utils/errorLogger';
+import { getCommandDescription, getMessage } from '../../json';
+import { Logger } from '../../utils';
 
 const timeout = getCommandDescription('timeout');
+const modMessages = getMessage('moderation');
+const userNotFoundMsg = getMessage('userNotFound');
 
 export const data = new SlashCommandBuilder()
   .setName(timeout.name)
@@ -58,29 +60,29 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
     await interaction.deferReply({ ephemeral: true });
 
     if (!member) {
-      await interaction.editReply(messages.moderation.userNotFound);
+      await interaction.editReply(userNotFoundMsg);
       return;
     }
     if (member.id === interaction.guild?.ownerId) {
       await interaction.editReply(
-        messages.moderation.isOwner.replace(action.mold, action.par),
+        modMessages.isOwner.replace(action.mold, action.par),
       );
       return;
     }
     if (user.bot) {
       await interaction.editReply(
-        messages.moderation.isBot.replace(action.mold, action.inf),
+        modMessages.isBot.replace(action.mold, action.inf),
       );
       return;
     }
 
     const msDuration = ms(duration);
     if (isNaN(msDuration)) {
-      await interaction.editReply(messages.moderation.timeoutNaN);
+      await interaction.editReply(modMessages.timeoutNaN);
       return;
     }
     if (msDuration < 5000 || msDuration > 2.419e9) {
-      await interaction.editReply(messages.moderation.timeoutInvalid);
+      await interaction.editReply(modMessages.timeoutInvalid);
       return;
     }
 
@@ -89,16 +91,13 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
     const botRole = me?.roles.highest;
     if (requestUserRole.comparePositionTo(targetUserRole) < 1) {
       await interaction.editReply(
-        messages.moderation.requestPositionLower.replace(
-          action.mold,
-          action.inf,
-        ),
+        modMessages.requestPositionLower.replace(action.mold, action.inf),
       );
       return;
     }
     if (botRole.comparePositionTo(targetUserRole) < 1) {
       await interaction.editReply(
-        messages.moderation.botPositionLower.replace(action.mold, action.inf),
+        modMessages.botPositionLower.replace(action.mold, action.inf),
       );
       return;
     }
@@ -119,7 +118,7 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       );
     }
   } catch (err) {
-    errorLogger('castigo', err);
+    Logger.error('slash', 'castigo', err);
   }
 }
 

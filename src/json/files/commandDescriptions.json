@@ -6,8 +6,8 @@
   },
   "ban": {
     "name": "banir",
-    "description": "(mod) Bane um usuário",
-    "restriction": "mod",
+    "description": "(Admin) Bane um usuário",
+    "restriction": "admin",
     "options": [
       {
         "name": "user",
@@ -26,8 +26,8 @@
   },
   "kick": {
     "name": "chutar",
-    "description": "(mod) Chuta um usuário para fora do servidor",
-    "restriction": "mod",
+    "description": "(Admin) Chuta um usuário para fora do servidor",
+    "restriction": "admin",
     "options": [
       {
         "name": "usuario",
@@ -46,8 +46,8 @@
   },
   "timeout": {
     "name": "castigo",
-    "description": "(mod) Silencia um membro por um tempo determinado",
-    "restriction": "mod",
+    "description": "(Admin) Silencia um membro por um tempo determinado",
+    "restriction": "admin",
     "options": [
       {
         "name": "usuario",
@@ -69,6 +69,118 @@
       }
     ],
     "category": "Moderação"
+  },
+  "welcomechannel": {
+    "name": "canalbemvindo",
+    "description": "(Admin) Mensagens de \"bem-vindo\" e \"adeus\"",
+    "subcommands": ["configurar", "desabilitar", "info"],
+    "restriction": "admin",
+    "category": "Configuração"
+  },
+  "welcomechannel_configure": {
+    "name": "canalbemvindo configurar",
+    "subName": "configurar",
+    "description": "(Admin) Configura um canal para serem enviadas as mensagens de \"bem-vindo\" e \"adeus\"",
+    "restriction": "admin",
+    "options": [
+      {
+        "name": "canal",
+        "description": "Canal onde serão enviadas as mensagens",
+        "type": "channel",
+        "required": true
+      }
+    ],
+    "category": "Configuração"
+  },
+  "welcomechannel_disable": {
+    "name": "canalbemvindo desabilitar",
+    "subName": "desabilitar",
+    "description": "(Admin) Desabilita mensagens de bem-vindo e adeus no servidor",
+    "restriction": "admin",
+    "category": "Configuração"
+  },
+  "welcomechannel_info": {
+    "name": "canalbemvindo info",
+    "subName": "info",
+    "description": "(Admin) Mostra informações sobre mensagens de bem-vindo e adeus no servidor",
+    "restriction": "admin",
+    "category": "Configuração"
+  },
+  "reloadCommands": {
+    "name": "recarregarcomandos",
+    "description": "(Dev) Recarrega os comandos",
+    "restriction": "dev",
+    "options": [
+      {
+        "name": "tipo",
+        "description": "Quais comandos recarregar",
+        "type": "string",
+        "choices": [
+          {
+            "name": "Globais",
+            "value": "global"
+          },
+          {
+            "name": "Desenvolvedor",
+            "value": "dev"
+          }
+        ],
+        "required": false
+      }
+    ],
+    "category": "Configuração"
+  },
+  "restart": {
+    "name": "reiniciar",
+    "description": "(Dev) Reinicia o bot",
+    "category": "Configuração"
+  },
+  "activity": {
+    "name": "atividade",
+    "description": "(Dev) Configura a atividade do bot",
+    "restriction": "dev",
+    "subcommands": ["configurar", "limpar"],
+    "category": "Configuração"
+  },
+  "activity_set": {
+    "name": "atividade configurar",
+    "subName": "configurar",
+    "description": "(Dev) Configura a atividade do bot",
+    "options": [
+      {
+        "name": "tipo",
+        "description": "O tipo da atividade",
+        "type": "string",
+        "choices": [
+          {
+            "name": "Ouvindo",
+            "value": "listening"
+          },
+          {
+            "name": "Jogando",
+            "value": "playing"
+          },
+          {
+            "name": "Assistindo",
+            "value": "watching"
+          }
+        ],
+        "required": true
+      },
+      {
+        "name": "texto",
+        "description": "O texto da atividade",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "category": "Configuração"
+  },
+  "activity_clear": {
+    "name": "atividade limpar",
+    "subName": "limpar",
+    "description": "(Dev) Limpa a atividade do bot",
+    "category": "Configuração"
   },
   "announcement": {
     "name": "anuncio",
@@ -191,5 +303,51 @@
       }
     ],
     "category": "Conteúdo"
+  },
+  "scanBloopers": {
+    "name": "perolasdoservidor",
+    "description": "Manda aleatoriamente uma pérola do servidor",
+    "options": [
+      {
+        "name": "autor",
+        "description": "O autor da pérola",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Conteúdo"
+  },
+  "lunasOpinion": {
+    "name": "opiniaodaluna",
+    "description": "Manda aleatoriamente um adjetivo para caracterizar alguém do servidor",
+    "options": [
+      {
+        "name": "pessoa",
+        "description": "A pessoa para dar a opinião",
+        "type": "user",
+        "required": false
+      }
+    ],
+    "category": "Conteúdo"
+  },
+  "lunaSays": {
+    "name": "lunadiz",
+    "description": "(Dono) Luna diz algo...",
+    "restriction": "owner",
+    "options": [
+      {
+        "name": "mensagem",
+        "description": "Mensagem da Luna",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "responder",
+        "description": "Id da mensagem para responder",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "category": "Outros"
   }
 }

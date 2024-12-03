@@ -1,7 +1,7 @@
 import type { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
 
-import { announcementFunctions, setCommandTitleOption } from '../../utils';
+import { Announcement, setCommandTitleOption } from '../../utils';
 import { getCommandDescription } from '../../json';
 
 const announcement = getCommandDescription('announcement');
@@ -154,13 +154,16 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
   const subcommand = interaction.options.getSubcommand();
   switch (subcommand) {
     case announcement_release.subName:
-      await announcementFunctions.release(interaction);
+      await Announcement.release(interaction);
       return;
     case announcement_title.subName:
-      await announcementFunctions.title(interaction);
+      await Announcement.title(interaction);
       return;
-    case announcement_recruitment.subName:
-      await announcementFunctions.release(interaction);
+    // case announcement_recruitment.subName:
+    //   await Announcement.recruitment(interaction);
+    //   break;
+    default:
+      return;
   }
 }
 

@@ -43,6 +43,12 @@ export abstract class WelcomeChannel {
       welcomeOn.push({
         server: guild.id,
         channel: newChannel.id,
+        announcements: '',
+        releases: '',
+        image: '',
+        color: 'Random',
+        goodbyeImage: '',
+        goodbyeColor: 'Random'
       });
       updateConfig('welcomeOn', welcomeOn);
       const msg = welcomeMsg.register.replace('{newChannel}', newChannel.name);

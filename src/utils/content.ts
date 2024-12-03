@@ -5,10 +5,12 @@ import {
   ChatInputCommandInteraction,
   Message,
   SlashCommandStringOption,
+  TextBasedChannel,
   User,
 } from 'discord.js';
 
 import { getCommandDescription, messages, scanTitles } from '../json';
+import { AIConfig } from '../config.json';
 import type {
   CheckMessageContentOptions,
   ContentLinkObject,
@@ -264,4 +266,21 @@ export function shouldSendMessage(author: User): boolean {
  */
 export function normal(text: string): string {
   return text.normalize('NFD');
+}
+
+/**
+ * `[ Content ]`
+ *
+ * Checks whether message should be ignored or not.
+ *
+ * @param msg Message to check
+ */
+export function isIgnore(msg: string): boolean {
+  const filtered = msg
+    .substring(0, 50)
+    .toLowerCase()
+    .replaceAll(/[*_~|]/g, '');
+  return ['!lunaignore', '!lunaig', '!ignore', '!ig'].some(t =>
+    filtered.startsWith(t),
+  );
 }

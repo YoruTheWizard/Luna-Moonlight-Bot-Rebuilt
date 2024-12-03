@@ -1,3 +1,4 @@
+import { Part } from '@google/generative-ai';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -12,5 +13,8 @@ export default function getInstructions() {
     'AIInstructions.txt',
   );
   const data = readFileSync(filePath, { encoding: 'utf-8' });
-  return data;
+  const dataArray = data.split('\n\n').map(text => {
+    return { text } as Part;
+  });
+  return dataArray;
 }

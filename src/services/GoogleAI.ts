@@ -6,11 +6,13 @@ import {
 } from '@google/generative-ai';
 import { AIConfig } from '../config.json';
 import getInstructions from '../utils/AI/getInstructions';
+import { functionDeclarations } from '../utils/AI/functions';
 const geminiConfig = AIConfig.gemini;
 
 export default abstract class GoogleAI {
   private static AI_INSTANCE: GenerativeModel | null = null;
   private static CHAT: ChatSession | null = null;
+  private static COOLDOWN: boolean = false;
 
   /**
    * `[ AI: Google ]`
@@ -32,12 +34,13 @@ export default abstract class GoogleAI {
       history,
       systemInstruction: {
         role: 'user',
-        parts: [
-          {
-            text: getInstructions(),
-          },
-        ],
+        parts: getInstructions(),
       },
+      tools: [
+        {
+          functionDeclarations,
+        },
+      ],
       generationConfig: geminiConfig.options,
     });
 
@@ -60,5 +63,13 @@ export default abstract class GoogleAI {
   public static async getChatHistory() {
     if (!GoogleAI.CHAT) return null;
     return await GoogleAI.CHAT.getHistory();
+  }
+
+  public static get isCooldown() {
+    return GoogleAI.COOLDOWN;
+  }
+
+  public static set isCooldown(v: boolean) {
+    GoogleAI.COOLDOWN = v;
   }
 }

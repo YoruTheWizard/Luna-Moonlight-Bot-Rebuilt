@@ -51,10 +51,10 @@ export default abstract class OpenAI_API {
           castOptions.size = '1024x1024';
           break;
         case DrawImageSize.RECTANGLE_HORIZONTAL:
-          castOptions.size = '1024x1792';
+          castOptions.size = '1792x1024';
           break;
         case DrawImageSize.RECTANGLE_VERTICAL:
-          castOptions.size = '1792x1024';
+          castOptions.size = '1024x1792';
       }
     }
 

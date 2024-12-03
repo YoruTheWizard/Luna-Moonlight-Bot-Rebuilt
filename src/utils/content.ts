@@ -5,10 +5,12 @@ import {
   ChatInputCommandInteraction,
   Message,
   SlashCommandStringOption,
+  TextBasedChannel,
   User,
 } from 'discord.js';
 
 import { getCommandDescription, messages, scanTitles } from '../json';
+import { AIConfig } from '../config.json';
 import type {
   CheckMessageContentOptions,
   ContentLinkObject,
@@ -245,9 +247,18 @@ export async function sendTextMessage(
  * `[ Content ]`
  *
  * Checks if some message should be responded.
+ *
  * @param author the user who sent the message
+ * @param content content of the message (optional)
+ * @param channelId id of the channel in which the message was sent
  */
-export function shouldSendMessage(author: User): boolean {
+export function shouldSendMessage(
+  author: User,
+  content?: string,
+  channelId?: string,
+): boolean {
+  if (content && isIgnore(content)) return false;
+  if (channelId && channelId === AIConfig.gemini.guild.channel) return false;
   const now = getCurrentDate();
   if (now.getHours() < 6 || now.getHours() >= 22) return false;
   if (author.bot) return false;
@@ -264,4 +275,21 @@ export function shouldSendMessage(author: User): boolean {
  */
 export function normal(text: string): string {
   return text.normalize('NFD');
+}
+
+/**
+ * `[ Content ]`
+ *
+ * Checks whether message should be ignored or not.
+ *
+ * @param msg Message to check
+ */
+export function isIgnore(msg: string): boolean {
+  const filtered = msg
+    .substring(0, 50)
+    .toLowerCase()
+    .replaceAll(/[*_~|]/g, '');
+  return ['!lunaignore', '!lunaig', '!ignore', '!ig'].some(t =>
+    filtered.startsWith(t),
+  );
 }

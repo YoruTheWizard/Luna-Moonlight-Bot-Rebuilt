@@ -14,6 +14,7 @@ export default async function (member: GuildMember) {
 
     const welcomeEmbed = EmbedGenerator.welcome(member, guild, {
       imageUrl: options.image,
+      color: options.color,
       rulesChannel: guild.rulesChannel || undefined,
       releasesChannel: options.releases,
       announcementsChannel: options.announcements,

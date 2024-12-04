@@ -53,16 +53,18 @@ const sendAIResponse: MessageCreateEventFn = async (message, client, h) => {
 
     const result = await chat.sendMessage(msg);
     const response = result.response.text();
+    const functionCall = result.response.functionCalls()?.[0];
 
     // Testing for messages longer than 2000 characters
-    if (response.length > 2000) {
-      const respArray = response.match(/[\s\S]{1,2000}/g)!;
-      respArray.forEach(async resp => {
-        await message.reply(resp);
-      });
-    } else await message.reply(response);
+    if (functionCall?.name !== 'getCurrentDate') {
+      if (response.length > 2000) {
+        const respArray = response.match(/[\s\S]{1,2000}/g)!;
+        respArray.forEach(async resp => {
+          await message.reply(resp);
+        });
+      } else await message.reply(response);
+    }
 
-    const functionCall = result.response.functionCalls()?.[0];
     if (functionCall) {
       GoogleAI.isCooldown = true;
       // Calling function

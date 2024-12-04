@@ -3,6 +3,7 @@ import OpenAI_API from '../../services/OpenAI';
 import SerpAPI from '../../services/SerpAPI';
 import { Logger } from '../logger';
 import { DrawImageData } from '../../types';
+import { getCurrentDate } from '../content';
 
 export const functionDeclarations: FunctionDeclaration[] = [
   {
@@ -50,6 +51,10 @@ export const functionDeclarations: FunctionDeclaration[] = [
       required: ['query'],
     },
   },
+  {
+    name: 'getCurrentDate',
+    description: 'Tells current time and date.',
+  },
 ];
 
 export async function useFunction(functionName: string, args: any) {
@@ -61,6 +66,8 @@ export async function useFunction(functionName: string, args: any) {
       );
     case 'searchOnInternet':
       return await SerpAPI.search(args.query);
+    case 'getCurrentDate':
+      return getNow();
     default:
       Logger.error(
         'event',
@@ -73,4 +80,11 @@ export async function useFunction(functionName: string, args: any) {
 
 export function isGeneratedImage(data: any): data is DrawImageData {
   return !!data.image;
+}
+
+export function getNow() {
+  const date = getCurrentDate();
+  return {
+    date,
+  };
 }

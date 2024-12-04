@@ -1,10 +1,9 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import ms from 'ms';
-import { default as prettyMs } from 'pretty-ms';
 
 import { getCommandDescription, getMessage } from '../../json';
-import { Logger } from '../../utils';
+import { Logger, msToTime } from '../../utils';
 
 const timeout = getCommandDescription('timeout');
 const modMessages = getMessage('moderation');
@@ -102,19 +101,16 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
       return;
     }
 
+    const isMuted = member.isCommunicationDisabled();
     await member.timeout(msDuration, reason);
-    const prettyDuration = prettyMs(msDuration, { verbose: true })
-      .replace('second', 'segundo')
-      .replace('minute', 'minuto')
-      .replace('hour', 'horas')
-      .replace('day', 'dia');
-    if (member.isCommunicationDisabled()) {
-      await interaction.reply(
-        `O castigo de ${member.nickname} foi alterado para ${prettyDuration}`,
+    const prettyDuration = msToTime(msDuration);
+    if (isMuted) {
+      await interaction.editReply(
+        `O castigo de ${member.nickname || member.user.displayName} foi alterado para ${prettyDuration}`,
       );
     } else {
-      await interaction.reply(
-        `${member.nickname} foi silenciado por ${prettyDuration}.\n${reason ? `Razão: ${reason}` : 'Nenhuma razão providenciada.'}`,
+      await interaction.editReply(
+        `${member.nickname || member.user.displayName} foi silenciado por ${prettyDuration}.\n${reason ? `Razão: ${reason}` : 'Nenhuma razão providenciada.'}`,
       );
     }
   } catch (err) {

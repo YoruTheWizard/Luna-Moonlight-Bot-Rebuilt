@@ -1,21 +1,26 @@
 import { Client, TextBasedChannel } from 'discord.js';
-import { AIConfig } from '../../config.json';
-import messageToJSON from './messageToJSON';
 import { Content } from '@google/generative-ai';
+import messageToJSON from './messageToJSON';
+import { AIConfig } from '../../config.json';
+import { isIgnore } from '../content';
+const geminiConfig = AIConfig.gemini;
 
 export default async function getChannelHistory(client: Client<true>) {
-  const server = client.guilds.cache.get(AIConfig.guild.id);
-  const channel = server?.channels.cache.get(AIConfig.guild.channel) as
+  const server = client.guilds.cache.get(geminiConfig.guild.id);
+  const channel = server?.channels.cache.get(geminiConfig.guild.channel) as
     | TextBasedChannel
     | undefined;
   if (!channel) return []; // If channel does not exist, return empty array
 
-  // Get last 50 messages in channel
-  const messages = await channel.messages.fetch({ limit: 50 });
+  // Get last messages in channel
+  const messages = await channel.messages.fetch({
+    limit: geminiConfig.fetchChannelLimit,
+  });
   // Filter messages
   const filtered = messages
     .reverse()
     .filter(msg => !msg.author.bot || msg.author.id === client.user.id)
+    .filter(msg => isIgnore(msg.content))
     .map<Content>(msg => {
       return {
         role: msg.author.bot ? 'model' : 'user',
@@ -39,6 +44,7 @@ export default async function getChannelHistory(client: Client<true>) {
         if (lastContent.role === 'model' || c.role === 'model') history.push(c);
         else history[history.length - 1].parts.push(...c.parts);
       }
+      if (history[0]?.role === 'model') history.shift();
       if (i === filtered.length - 1) resolve(history);
     });
   });

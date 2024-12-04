@@ -2,6 +2,7 @@ import { FunctionDeclaration, SchemaType } from '@google/generative-ai';
 import OpenAI_API from '../../services/OpenAI';
 import SerpAPI from '../../services/SerpAPI';
 import { Logger } from '../logger';
+import { DrawImageData } from '../../types';
 
 export const functionDeclarations: FunctionDeclaration[] = [
   {
@@ -68,4 +69,8 @@ export async function useFunction(functionName: string, args: any) {
       );
       return null;
   }
+}
+
+export function isGeneratedImage(data: any): data is DrawImageData {
+  return !!data.image;
 }

@@ -7,5 +7,5 @@ export default function messageToJSON(
   clientId: string,
 ) {
   const nickObj = getNickname(message.author.id);
-  return `{"userId":"${message.author.id}","userName":"${message.author.displayName}",${nickObj ? `"nickname":"${nickObj.nickname}",` : ''}"message":"${message.content.replace(`<@${clientId}>`, AIConfig.botName)}"}`;
+  return `{"userId":"${message.author.id}","userName":"${message.author.displayName}",${nickObj ? `"nickname":"${nickObj.nickname}",` : ''}"message":"${message.content.replace(`<@${clientId}>`, AIConfig.gemini.botName)}"}`;
 }

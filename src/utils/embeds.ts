@@ -1,8 +1,10 @@
 import {
   APIEmbed,
+  ColorResolvable,
   EmbedBuilder,
   Guild,
   GuildMember,
+  PartialGuildMember,
   TextChannel,
 } from 'discord.js';
 
@@ -13,20 +15,31 @@ type WelcomeEmbedOptions = {
   rulesChannel?: string | TextChannel;
   releasesChannel?: string | TextChannel;
   announcementsChannel?: string | TextChannel;
+  color?: string | ColorResolvable;
 };
 type WelcomeEmbedFn = (
   member: GuildMember,
   guild: Guild,
   options: WelcomeEmbedOptions,
 ) => APIEmbed;
+type GoodbyeEmbedFn = (
+  member: GuildMember | PartialGuildMember,
+  guild: Guild,
+  options: Pick<WelcomeEmbedOptions, 'imageUrl' | 'color'>,
+) => APIEmbed;
 
 export abstract class EmbedGenerator {
   static welcome: WelcomeEmbedFn = (member, guild, options) => {
-    const { imageUrl, rulesChannel, releasesChannel, announcementsChannel } =
-      options;
+    const {
+      imageUrl,
+      rulesChannel,
+      releasesChannel,
+      announcementsChannel,
+      color = null,
+    } = options;
 
     const embed = new EmbedBuilder()
-      .setColor('Random')
+      .setColor(color as ColorResolvable)
       .setAuthor({
         name: member.displayName,
         iconURL: member.displayAvatarURL(),
@@ -67,6 +80,22 @@ export abstract class EmbedGenerator {
         value: messages.welcome.rules,
         inline: true,
       });
+
+    return embed.toJSON();
+  };
+
+  static goodbye: GoodbyeEmbedFn = (
+    member,
+    guild,
+    { imageUrl, color = null },
+  ) => {
+    const embed = new EmbedBuilder()
+      .setColor(color as ColorResolvable)
+      .setTitle('Tchau...')
+      .setDescription(
+        `${member.user.username} saiu do ${guild.name}... Espero que algum dia volte...`,
+      )
+      .setImage(imageUrl);
 
     return embed.toJSON();
   };

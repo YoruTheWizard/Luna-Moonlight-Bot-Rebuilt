@@ -10,9 +10,10 @@ import {
   shouldSendMessage,
 } from '../../utils';
 
-const sendEmoji: MessageCreateEventFn = async messageObj => {
-  if (!shouldSendMessage(messageObj.author)) return;
-  const content = messageObj.content;
+const sendEmoji: MessageCreateEventFn = async message => {
+  if (!shouldSendMessage(message.author, message.content, message.channelId))
+    return;
+  const content = message.content;
   const answerTimeout = 100;
   // i.includes('-') ? i.split('-')[0] : i
   if (!getEmojiArray().length) return;
@@ -26,7 +27,7 @@ const sendEmoji: MessageCreateEventFn = async messageObj => {
     };
     // console.log(checkMessageContent(content, normalizedTriggers, checkObj));
     if (checkMessageContent(content, normalizedTriggers, checkObj)) {
-      await sendTextMessage(messageObj, emoji.id, { answerTimeout });
+      await sendTextMessage(message, emoji.id, { answerTimeout });
       break;
     }
   }

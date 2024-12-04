@@ -10,7 +10,8 @@ import {
 } from '../../utils';
 
 const sendGreeting: MessageCreateEventFn = async message => {
-  if (!shouldSendMessage(message.author)) return;
+  if (!shouldSendMessage(message.author, message.content, message.channelId))
+    return;
   const msg = messageIntoArray(message.content);
   const user = getNickname(message.author.id) || message.author.displayName;
   const username = typeof user === 'string' ? user : user.nickname;

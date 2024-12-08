@@ -61,6 +61,8 @@ export const consoleFormat = {
   fr: '\x1b[31m',
   /** Foreground Green */
   fg: '\x1b[32m',
+  /** Foreground Yellow */
+  fy: '\x1b[33m',
   /** Foreground White */
   fw: '\x1b[37m',
 
@@ -68,5 +70,6 @@ export const consoleFormat = {
 
   // CUSTOM BITS
   success: '\x1b[1m\x1b[32m[✓]\x1b[0m',
+  warning: '\x1b[1m\x1b[33m[!]\x1b[0m',
   error: '\x1b[1m\x1b[31m[!]\x1b[0m',
 };

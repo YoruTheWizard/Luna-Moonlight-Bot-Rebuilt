@@ -18,5 +18,5 @@ export const run = async ({
   client,
 }: SlashCommandProps): Promise<void> => {
   await interaction.reply({ content: 'Boa noite...', ephemeral: true });
-  return await restart(interaction.channel!, client);
+  return await restart(client, interaction.channel!);
 };

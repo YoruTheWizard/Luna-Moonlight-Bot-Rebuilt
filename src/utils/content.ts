@@ -1,16 +1,17 @@
 import {
   ActionRowBuilder,
+  APIActionRowComponent,
+  APIButtonComponent,
   ButtonBuilder,
   ButtonStyle,
   ChatInputCommandInteraction,
   Message,
   SlashCommandStringOption,
-  TextBasedChannel,
   User,
 } from 'discord.js';
 
 import { getCommandDescription, messages, scanTitles } from '../json';
-import { AIConfig } from '../config.json';
+import { AIConfig, timezoneOffset } from '../config.json';
 import type {
   CheckMessageContentOptions,
   ContentLinkObject,
@@ -102,7 +103,9 @@ export function linkListTreater(linksText: string): ContentLinkObject[] {
  * Returns an Action Row Component of links for announcement embeds.
  * @param links the list of link objects
  */
-export function linksButtonRow(links: ContentLinkObject[]) {
+export function linksButtonRow(
+  links: ContentLinkObject[],
+): APIActionRowComponent<APIButtonComponent> {
   const buttons: ButtonBuilder[] = [];
   for (const link of links) {
     let btn = new ButtonBuilder()
@@ -147,16 +150,16 @@ export function getCurrentDate(): Date {
   const rawDateString = new Date().toLocaleString([], {
     timeZone: 'America/Sao_Paulo',
     hour12: false,
-    day: 'numeric',
-    month: 'numeric',
+    day: '2-digit',
+    month: '2-digit',
     year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
   });
   const [date, hour] = rawDateString.split(', ');
   const reverseDate = date.split('/').reverse().join('-');
-  const dateString = `${reverseDate}T${hour}.000Z`;
+  const dateString = `${reverseDate}T${hour}.000${timezoneOffset}:00`;
   return new Date(dateString);
   // return new Date(
   //   new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }),
@@ -257,11 +260,12 @@ export function shouldSendMessage(
   content?: string,
   channelId?: string,
 ): boolean {
-  if (content && isIgnore(content)) return false;
-  if (channelId && channelId === AIConfig.gemini.guild.channel) return false;
-  const now = getCurrentDate();
-  if (now.getHours() < 6 || now.getHours() >= 22) return false;
   if (author.bot) return false;
+  const now = getCurrentDate();
+  new Date().getTimezoneOffset();
+  if (now.getHours() < 6 || now.getHours() >= 22) return false;
+  if (channelId && channelId === AIConfig.gemini.guild.channel) return false;
+  if (content && isIgnore(content)) return false;
   return true;
 }
 

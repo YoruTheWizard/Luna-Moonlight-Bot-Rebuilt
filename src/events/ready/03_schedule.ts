@@ -42,5 +42,24 @@ export default function (c: Client<true>) {
   Logger.log(
     `> ${cf.b}Scheduled events:${cf.r} ${eventNames.length ? '' : 'none'}`,
   );
+
+  cron.schedule(
+    '* 22 * * *',
+    () => {
+      c.user.setStatus('invisible');
+    },
+    { timezone: 'America/Sao_Paulo' },
+  );
+  Logger.log('  - time to sleep');
+
+  cron.schedule(
+    '* 6 * * *',
+    () => {
+      c.user.setStatus('online');
+    },
+    { timezone: 'America/Sao_Paulo' },
+  );
+  Logger.log('  - wake up');
+
   if (eventNames.length) eventNames.map(event => Logger.log(`  - ${event}`));
 }

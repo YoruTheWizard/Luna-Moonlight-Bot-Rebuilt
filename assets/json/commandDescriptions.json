@@ -349,5 +349,37 @@
       }
     ],
     "category": "Outros"
+  },
+  "status": {
+    "name": "status",
+    "description": "(Dev) Configura o status do bot",
+    "restriction": "dev",
+    "options": [
+      {
+        "name": "status",
+        "description": "O status a ser colocado",
+        "type": "string",
+        "choices": [
+          {
+            "name": "Disponível",
+            "value": "online"
+          },
+          {
+            "name": "Ausente",
+            "value": "idle"
+          },
+          {
+            "name": "Não perturbe",
+            "value": "dnd"
+          },
+          {
+            "name": "Invisível",
+            "value": "invisible"
+          }
+        ],
+        "required": true
+      }
+    ],
+    "category": "Configuração"
   }
 }

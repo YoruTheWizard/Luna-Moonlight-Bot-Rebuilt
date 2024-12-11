@@ -27,6 +27,7 @@ export const data = new SlashCommandBuilder()
 
 export const options: CommandOptions = {
   ownerOnly: true,
+  awakeOnly: true,
 };
 
 export const run = async ({

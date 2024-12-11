@@ -44,6 +44,7 @@ export const data = new SlashCommandBuilder()
 
 export const options: CommandOptions = {
   devOnly: true,
+  awakeOnly: true,
 };
 
 export const run = async ({

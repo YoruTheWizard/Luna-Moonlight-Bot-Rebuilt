@@ -24,7 +24,9 @@ export const data = new SlashCommandBuilder()
       .setDescription(opinion.options![0].description),
   );
 
-// export const options = {};
+export const options = {
+  awakeOnly: true,
+};
 
 export async function run({
   interaction,

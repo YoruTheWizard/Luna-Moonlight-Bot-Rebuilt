@@ -27,7 +27,9 @@ export const data = new SlashCommandBuilder()
   .setDescription(scanBloopers.description)
   .addStringOption(opt => setAuthorOption(opt));
 
-// export const options = {};
+export const options = {
+  awakeOnly: true,
+};
 
 export async function run({ interaction }: SlashCommandProps): Promise<void> {
   const author =

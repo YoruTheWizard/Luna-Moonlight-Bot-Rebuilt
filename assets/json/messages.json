@@ -32,5 +32,6 @@
     "dad": "Eu amo muito o meu pai {heart}",
     "nothing": "Hmm... Não tenho muito a dizer sobre {person}",
     "sentence": "Eu acho que {person} é {adj}"
-  }
+  },
+  "sleeping": "*Luna está dormindo...* {emoji}"
 }

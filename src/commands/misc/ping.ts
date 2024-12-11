@@ -21,5 +21,5 @@ export async function run({
 }
 
 export const options: CommandOptions = {
-  deleted: false,
+  awakeOnly: true,
 };

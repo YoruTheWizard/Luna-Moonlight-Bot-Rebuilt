@@ -1,5 +1,4 @@
-import { Client, TextBasedChannel } from 'discord.js';
-import * as config from '../../config.json';
+import { Client, TextChannel } from 'discord.js';
 import cron from 'node-cron';
 import { events } from '../../json';
 import { consoleFormat as cf, Logger } from '../../utils';
@@ -17,7 +16,7 @@ export default function (c: Client<true>) {
       if (!guild) continue;
 
       const channel = guild.channels.cache.get(server.channel) as
-        | TextBasedChannel
+        | TextChannel
         | undefined;
       if (!channel) continue;
 

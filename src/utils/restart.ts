@@ -1,4 +1,4 @@
-import { Client, TextBasedChannel } from 'discord.js';
+import { Client, TextChannel } from 'discord.js';
 import start from '..';
 import { Logger } from './logger';
 
@@ -12,7 +12,7 @@ import { Logger } from './logger';
  */
 export const restart = async (
   client: Client,
-  channel?: TextBasedChannel,
+  channel?: TextChannel,
 ): Promise<void> => {
   try {
     Logger.success('Restarting...');

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, TextChannel } from 'discord.js';
 import { getCommandDescription } from '../../json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { restart } from '../../utils';
@@ -18,5 +18,5 @@ export const run = async ({
   client,
 }: SlashCommandProps): Promise<void> => {
   await interaction.reply({ content: 'Boa noite...', ephemeral: true });
-  return await restart(client, interaction.channel!);
+  return await restart(client, interaction.channel as TextChannel);
 };

@@ -7,6 +7,7 @@ import {
   ChatInputCommandInteraction,
   Message,
   SlashCommandStringOption,
+  TextChannel,
   User,
 } from 'discord.js';
 
@@ -136,7 +137,8 @@ export async function sendContentEmbeds(
     components: rows,
   };
   if (ephemeral) {
-    await interaction.channel?.send(messageOptions);
+    const channel = interaction.channel as TextChannel;
+    await channel.send(messageOptions);
     interaction.reply({ content: messages.messageSent, ephemeral });
   } else interaction.reply(messageOptions);
 }

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, TextChannel } from 'discord.js';
 import { getCommandDescription, getMessage } from '../../json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { Logger } from '../../utils';
@@ -40,11 +40,12 @@ export const run = async ({
   const replyId = interaction.options.getString(lunaSays.options![1].name);
 
   try {
+    const channel = interaction.channel as TextChannel;
     if (replyId) {
-      const reply = interaction.channel?.messages.cache.get(replyId);
+      const reply = channel.messages.cache.get(replyId);
       if (!reply) return;
       await reply.reply(message);
-    } else await interaction.channel?.send(message);
+    } else await channel.send(message);
     await interaction.reply({ content: msgSent, ephemeral: true });
   } catch (err) {
     Logger.error('slash', 'lunadiz', err);

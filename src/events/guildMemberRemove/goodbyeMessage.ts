@@ -1,4 +1,4 @@
-import { GuildMember, PartialGuildMember, TextBasedChannel } from 'discord.js';
+import { GuildMember, PartialGuildMember, TextChannel } from 'discord.js';
 import { welcomeOn } from '../../config.json';
 import { EmbedGenerator, Logger } from '../../utils';
 
@@ -17,9 +17,7 @@ export default async function (member: GuildMember | PartialGuildMember) {
       color: options.goodbyeColor,
     });
 
-    const channel = guild.channels.cache.get(
-      options.channel,
-    )! as TextBasedChannel;
+    const channel = guild.channels.cache.get(options.channel)! as TextChannel;
     channel.send({ embeds: [goodbyeEmbed] });
   } catch (err) {
     Logger.error('event', 'sending goodbye message', err);

@@ -5,11 +5,11 @@ import { getCurrentDate } from './content';
 
 export abstract class Logger {
   private static OUTPUT = createWriteStream(
-    resolve(__dirname, '..', 'logs', 'output.log'),
+    resolve(__dirname, '..', '..', 'logs', 'output.log'),
     { flags: 'a' },
   );
   private static ERROR = createWriteStream(
-    resolve(__dirname, '..', 'logs', 'error.log'),
+    resolve(__dirname, '..', '..', 'logs', 'error.log'),
     { flags: 'a' },
   );
 

@@ -2,14 +2,14 @@ import fs from 'fs';
 import path from 'path';
 
 // JSON
-import * as commandDescriptionsJson from './files/commandDescriptions.json';
-import customNicksJson from './files/internal/customNicks.json';
-import eventsJson from './files/internal/events.json';
-import scanTitlesJson from './files/internal/scanTitles.json';
-import adjectivesJson from './files/internal/adjectives.json';
-import * as emojisJson from './files/internal/emojis.json';
-import * as messagesJson from './files/messages.json';
-import * as scanBloopersJson from './files/internal/scanBloopers.json';
+import * as commandDescriptionsJson from '../../assets/json/commandDescriptions.json';
+import customNicksJson from '../../assets/json/internal/customNicks.json';
+import eventsJson from '../../assets/json/internal/events.json';
+import scanTitlesJson from '../../assets/json/internal/scanTitles.json';
+import adjectivesJson from '../../assets/json/internal/adjectives.json';
+import * as emojisJson from '../../assets/json/internal/emojis.json';
+import * as messagesJson from '../../assets/json/messages.json';
+import * as scanBloopersJson from '../../assets/json/internal/scanBloopers.json';
 
 // TYPES
 
@@ -98,7 +98,15 @@ export const getEmojiArray = (): ({ name: string } & Emoji)[] => {
  * @param data data to store
  */
 export const addToJson: addToJsonFN = (file, data) => {
-  const filePath = path.resolve(__dirname, 'files', 'internal', `${file}.json`);
+  const filePath = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'assets',
+    'json',
+    'internal',
+    `${file}.json`,
+  );
   const jsonFile = JSON.parse(
     fs.readFileSync(filePath).toString(),
   ) as (typeof data)[];

@@ -7,9 +7,9 @@ export default function getInstructions() {
     __dirname,
     '..',
     '..',
-    'json',
-    'files',
-    'internal',
+    '..',
+    'assets',
+    'docs',
     'AIInstructions.txt',
   );
   const data = readFileSync(filePath, { encoding: 'utf-8' });

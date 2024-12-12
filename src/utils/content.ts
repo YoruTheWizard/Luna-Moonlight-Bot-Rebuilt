@@ -20,6 +20,7 @@ import type {
   ScanTitle,
   SendMessageOptions,
 } from '../types';
+import Luna from './Luna';
 
 const announcement = getCommandDescription('announcement');
 
@@ -263,9 +264,7 @@ export function shouldSendMessage(
   channelId?: string,
 ): boolean {
   if (author.bot) return false;
-  const now = getCurrentDate();
-  new Date().getTimezoneOffset();
-  if (now.getHours() < 6 || now.getHours() >= 22) return false;
+  if (Luna.isAsleep) return false;
   if (channelId && channelId === AIConfig.gemini.guild.channel) return false;
   if (content && isIgnore(content)) return false;
   return true;

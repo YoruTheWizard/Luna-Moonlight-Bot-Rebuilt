@@ -1,10 +1,16 @@
 import { Client, PresenceStatusData } from 'discord.js';
-import { status } from '../../config.json';
-import { consoleFormat as cf, Logger } from '../../utils';
+import { status, schedule } from '../../config.json';
+import { consoleFormat as cf, getCurrentDate, Logger } from '../../utils';
+import { setBotStatus } from '../../utils/status';
 
-export default function (c: Client<true>) {
+export default async function (c: Client<true>) {
+  const hr = getCurrentDate().getHours();
+  if (hr >= schedule.sleep || hr < schedule.wakeUp) {
+    await setBotStatus('invisible', c, false);
+    Logger.log(`> ${cf.b}Status:${cf.r} invisible`);
+    return;
+  }
   if (!status) c.user.setStatus('online');
   else c.user.setStatus(status as PresenceStatusData);
-  const msg = `> ${cf.b}Status:${cf.r} ${status || 'none'}`;
-  Logger.log(msg);
+  Logger.log(`> ${cf.b}Status:${cf.r} ${status || 'online'}`);
 }

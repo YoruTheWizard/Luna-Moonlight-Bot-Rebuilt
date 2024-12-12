@@ -2,6 +2,8 @@ import { PresenceStatusData, SlashCommandBuilder } from 'discord.js';
 import { getCommandDescription } from '../../json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { Logger } from '../../utils';
+import { status as configStatus } from '../../config.json';
+import Luna from '../../utils/Luna';
 
 const status = getCommandDescription('status');
 
@@ -32,8 +34,6 @@ export const run = async ({
       true,
     ) as PresenceStatusData;
 
-    client.user.setStatus(statusType);
-
     let statusTranslated: string;
     switch (statusType) {
       case 'online':
@@ -46,10 +46,26 @@ export const run = async ({
         statusTranslated = 'não perturbe';
         break;
       case 'invisible':
+        Luna.isAIOn = false;
+        Luna.isAsleep = true;
         statusTranslated = 'invisível';
         break;
       default:
         statusTranslated = 'disponível';
+    }
+
+    if (statusType === configStatus) {
+      await interaction.reply({
+        content: `Status já é "${statusTranslated}"!`,
+        ephemeral: true,
+      });
+      return;
+    }
+
+    client.user.setStatus(statusType);
+    if (Luna.isAsleep && statusType !== 'invisible') {
+      Luna.isAIOn = true;
+      Luna.isAsleep = false;
     }
 
     await interaction.reply({

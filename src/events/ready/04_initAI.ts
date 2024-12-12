@@ -3,7 +3,6 @@ import GoogleAI from '../../services/GoogleAI';
 import getChannelHistory from '../../utils/AI/getChannelHistory';
 import { consoleFormat as cf, Logger } from '../../utils';
 import OpenAI_API from '../../services/OpenAI';
-import Luna from '../../utils/Luna';
 
 export default async function (c: Client<true>) {
   const history = await getChannelHistory(c);
@@ -23,5 +22,4 @@ export default async function (c: Client<true>) {
         );
     })
     .catch(err => Logger.error('event', 'starting Google AI instance', err));
-  Luna.config();
 }

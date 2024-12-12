@@ -385,18 +385,22 @@
   "lunaai": {
     "name": "lunaia",
     "description": "(Dev) Configura a IA da Luna",
-    "subcommands": ["ligar", "desligar", "reiniciar"]
+    "subcommands": ["ligar", "desligar", "reiniciar"],
+    "category": "Configuração"
   },
   "lunaai_turnon": {
     "name": "ligar",
-    "description": "(Dev) Liga a IA da Luna"
+    "description": "(Dev) Liga a IA da Luna",
+    "category": "Configuração"
   },
   "lunaai_turnoff": {
     "name": "desligar",
-    "description": "(Dev) Desliga a IA da Luna"
+    "description": "(Dev) Desliga a IA da Luna",
+    "category": "Configuração"
   },
   "lunaai_restart": {
     "name": "reiniciar",
-    "description": "(Dev) Reinicia a IA da Luna"
+    "description": "(Dev) Reinicia a IA da Luna",
+    "category": "Configuração"
   }
 }

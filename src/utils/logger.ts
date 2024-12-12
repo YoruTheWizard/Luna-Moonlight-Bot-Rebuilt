@@ -18,8 +18,8 @@ export abstract class Logger {
     return `${f ? cf.b : ''}[${date.toLocaleString()}]${f ? cf.r : ''}`;
   }
 
-  public static log(message: string) {
-    console.log(message);
+  public static log(message: string, sendTime: boolean = false) {
+    console.log(`${sendTime ? Logger.getTime() + ' ' : ''}${message}`);
   }
 
   public static success(message: string) {

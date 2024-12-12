@@ -168,6 +168,5 @@ export async function run({ interaction }: SlashCommandProps): Promise<void> {
 }
 
 export const options: CommandOptions = {
-  deleted: false,
-  devOnly: true,
+  staffOnly: true,
 };

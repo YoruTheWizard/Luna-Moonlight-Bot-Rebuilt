@@ -8,6 +8,7 @@ import getChannelHistory from '../../utils/AI/getChannelHistory';
 import { isGeneratedImage, useFunction } from '../../utils/AI/functions';
 import { AttachmentBuilder } from 'discord.js';
 import { timeout } from '../../utils';
+import Luna from '../../utils/Luna';
 
 const sendAIResponse: MessageCreateEventFn = async (message, client, h) => {
   if (message.channel.id !== AIConfig.gemini.guild.channel) return;
@@ -17,6 +18,7 @@ const sendAIResponse: MessageCreateEventFn = async (message, client, h) => {
     MessageCache.push({ text: messageToJSON(message, client.user.id) });
     return;
   }
+  if (!Luna.isAIOn) return;
   if (GoogleAI.isCooldown) return;
 
   try {

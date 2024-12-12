@@ -27,6 +27,13 @@
     "disable": "Mensagens de bem-vindo desabilitadas neste servidor.",
     "info": "**Servidor:** {guild}\n**Canal:** {channel}"
   },
+  "lunaAIConfig": {
+    "isOn": "A IA da Luna já está ligada!",
+    "isOff": "A IA da Luna já está desligada!",
+    "turnOn": "IA da Luna ligada.",
+    "turnOff": "IA da Luna desligada.",
+    "restart": "IA da Luna reiniciada."
+  },
   "opinion": {
     "myself": "Eu gosto de mim mesma",
     "dad": "Eu amo muito o meu pai {heart}",

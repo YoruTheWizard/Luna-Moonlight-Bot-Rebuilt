@@ -150,7 +150,7 @@ export async function sendContentEmbeds(
  * Gets current date in Brasilia time.
  */
 export function getCurrentDate(): Date {
-  const rawDateString = new Date().toLocaleString([], {
+  const rawDateString = new Date().toLocaleString('pt-br', {
     timeZone: 'America/Sao_Paulo',
     hour12: false,
     day: '2-digit',
@@ -164,9 +164,6 @@ export function getCurrentDate(): Date {
   const reverseDate = date.split('/').reverse().join('-');
   const dateString = `${reverseDate}T${hour}.000${timezoneOffset}:00`;
   return new Date(dateString);
-  // return new Date(
-  //   new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }),
-  // );
 }
 
 /**

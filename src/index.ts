@@ -26,7 +26,7 @@ const commandkitConfig = {
   commandsPath: join(__dirname, 'commands'),
   eventsPath: join(__dirname, 'events'),
   validationsPath: join(__dirname, 'validations'),
-  // bulkRegister: true,
+  bulkRegister: config.bulkRegister || false,
 };
 
 const start = () => {

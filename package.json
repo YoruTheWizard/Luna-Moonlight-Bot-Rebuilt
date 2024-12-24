@@ -1,6 +1,6 @@
 {
   "name": "luna-moonlight-ts",
-  "version": "2.0.1.1",
+  "version": "2.0.0",
   "description": "A Custom Discord bot for one of my servers",
   "main": "./dist/src/index.js",
   "scripts": {

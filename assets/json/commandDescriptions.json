@@ -402,5 +402,43 @@
     "name": "reiniciar",
     "description": "(Dev) Reinicia a IA da Luna",
     "category": "Configuração"
+  },
+  "eventMessage": {
+    "name": "mensagemevento",
+    "description": "(Admin) Envia uma mensagem de evento para todos no servidor",
+    "restriction": "admin",
+    "options": [
+      {
+        "name": "evento",
+        "description": "O evento para o qual a mensagem está sendo enviada",
+        "type": "string",
+        "choices": [
+          {
+            "name": "natal",
+            "value": "Feliz Natal!"
+          }
+        ],
+        "required": true
+      },
+      {
+        "name": "mensagem",
+        "description": "A mensagem a ser enviada",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "imagem",
+        "description": "Uma imagem para ser anexada na mensagem",
+        "type": "image",
+        "required": false
+      },
+      {
+        "name": "url-imagem",
+        "description": "URL da imagem para ser anexada na mensagem",
+        "type": "image",
+        "required": false
+      }
+    ],
+    "category": "Outros"
   }
 }

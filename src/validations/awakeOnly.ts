@@ -1,5 +1,5 @@
 import { ValidationProps } from 'commandkit';
-import { getEmoji, getMessage } from '../json';
+import { getEmoji, getMessage } from '../utils/json';
 import { ChatInputCommandInteraction } from 'discord.js';
 
 const sleeping = getMessage('sleeping');

@@ -28,7 +28,7 @@ type GoodbyeEmbedFn = (
   options: Pick<WelcomeEmbedOptions, 'imageUrl' | 'color'>,
 ) => APIEmbed;
 
-export abstract class EmbedGenerator {
+export default abstract class EmbedGenerator {
   static welcome: WelcomeEmbedFn = (member, guild, options) => {
     const {
       imageUrl,
@@ -46,7 +46,7 @@ export abstract class EmbedGenerator {
       })
       .setTitle(`Seja bem-vindo(a) ao ${guild.name}`)
       .setDescription(
-        `Olá ${member}, espero que se divirta na Moonlight Valley! ${getEmoji('stars')}`,
+        `Olá ${member}, espero que se divirta na Moonlight Valley! ${getEmoji('stars').id}`,
       )
       .setImage(imageUrl)
       .setThumbnail(guild.iconURL())

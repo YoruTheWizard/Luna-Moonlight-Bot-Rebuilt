@@ -1,7 +1,7 @@
 import { ActivityType, ChatInputCommandInteraction, Client } from 'discord.js';
 import { getCommandDescription } from '../json';
-import { updateConfig } from './updateConfig';
-import { Logger } from './logger';
+import { updateConfig } from '../misc/updateConfig';
+import { Logger } from '../misc/logger';
 
 const activitySet = getCommandDescription('activity_set');
 
@@ -10,7 +10,7 @@ type ActivityFn = (
   client: Client<true>,
 ) => Promise<void>;
 
-export abstract class Activity {
+export default abstract class Activity {
   static set: ActivityFn = async (interaction, client) => {
     const type = interaction.options.getString(
       activitySet.options![0].name,

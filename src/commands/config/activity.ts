@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { getCommandDescription } from '../../json';
+import { getCommandDescription } from '../../utils/json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { Activity } from '../../utils';
+import Activity from '../../utils/commands/activity';
 
 const activity = getCommandDescription('activity');
 const activitySet = getCommandDescription('activity_set');

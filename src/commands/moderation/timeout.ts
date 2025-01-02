@@ -2,8 +2,8 @@ import { SlashCommandBuilder } from 'discord.js';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import ms from 'ms';
 
-import { getCommandDescription, getMessage } from '../../json';
-import { Logger, msToTime } from '../../utils';
+import { getCommandDescription, getMessage } from '../../utils/json';
+import { Logger, msToTime } from '../../utils/misc';
 
 const timeout = getCommandDescription('timeout');
 const modMessages = getMessage('moderation');

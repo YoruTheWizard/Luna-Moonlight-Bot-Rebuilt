@@ -3,13 +3,13 @@ import path from 'path';
 
 // JSON
 import * as commandDescriptionsJson from '../../assets/json/commandDescriptions.json';
-import customNicksJson from '../../assets/json/internal/customNicks.json';
-import eventsJson from '../../assets/json/internal/events.json';
-import scanTitlesJson from '../../assets/json/internal/scanTitles.json';
-import adjectivesJson from '../../assets/json/internal/adjectives.json';
-import * as emojisJson from '../../assets/json/internal/emojis.json';
+import customNicksJson from '../../assets/json/customNicks.json';
+import eventsJson from '../../assets/json/events.json';
+import scanTitlesJson from '../../assets/json/scanTitles.json';
+import adjectivesJson from '../../assets/json/adjectives.json';
+import * as emojisJson from '../../assets/json/emojis.json';
 import * as messagesJson from '../../assets/json/messages.json';
-import * as scanBloopersJson from '../../assets/json/internal/scanBloopers.json';
+import * as scanBloopersJson from '../../assets/json/scanBloopers.json';
 
 // TYPES
 
@@ -24,9 +24,9 @@ import type {
   ScanBlooper,
   ScanBloopersJsonType,
   ScanTitle,
-} from '../types';
+} from '../../types';
 
-type CommandName = keyof typeof commandDescriptionsJson;
+export type CommandName = keyof typeof commandDescriptionsJson;
 type MessageName = keyof typeof messagesJson;
 type EmojiName = keyof typeof emojisJson;
 

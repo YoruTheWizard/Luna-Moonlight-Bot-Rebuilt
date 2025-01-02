@@ -1,6 +1,6 @@
 import { ValidationProps } from 'commandkit';
 import { ChatInputCommandInteraction } from 'discord.js';
-import { getMessage } from '../json';
+import { getMessage } from '../utils/json';
 import { devs } from '../config.json';
 
 const guildOnly = getMessage('guildOnly');

@@ -1,8 +1,17 @@
 import { Client, PresenceStatusData } from 'discord.js';
-import { updateConfig } from './updateConfig';
-import { Logger } from './logger';
-import Luna from './Luna';
+import { updateConfig } from '../misc/updateConfig';
+import { Logger } from '../misc/logger';
+import Luna from '.';
 
+/**
+ * `[ Luna ]`
+ *
+ * Changes bot presence status
+ *
+ * @param status The status to be set
+ * @param client Client object
+ * @param log Rather the status change should be logged in console or not. Default is `true`
+ */
 export async function setBotStatus(
   status: PresenceStatusData,
   client: Client<true>,

@@ -1,7 +1,7 @@
 import { createWriteStream } from 'fs';
 import { resolve } from 'path';
-import { consoleFormat as cf } from './consoleFormat';
-import { getCurrentDate } from './content';
+import { cf } from './consoleFormat';
+import { getCurrentDate } from '../content';
 
 export abstract class Logger {
   private static OUTPUT = createWriteStream(

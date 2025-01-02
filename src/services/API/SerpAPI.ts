@@ -1,6 +1,6 @@
 import { BaseResponse, getJson } from 'serpapi';
-import { serpAPIConfig } from '../config.json';
-import { SearchFn } from '../types';
+import { serpAPIConfig } from '../../config.json';
+import { SearchFn } from '../../types';
 
 export default abstract class SerpAPI {
   /**

@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
-import { DrawImageFn, DrawImageOptions } from '../types';
-import { AIConfig } from '../config.json';
+import { DrawImageFn, DrawImageOptions } from '../../types';
+import { AIConfig } from '../../config.json';
 import { ImageGenerateParams } from 'openai/resources';
-import { DrawImageSize } from '../types/enum';
+import { DrawImageSize } from '../../types/enum';
 const OpenAIConfig = AIConfig.openai as Omit<
   ImageGenerateParams,
   'prompt' | 'user'

@@ -1,6 +1,7 @@
 import { GuildMember, TextChannel } from 'discord.js';
 import { welcomeOn } from '../../config.json';
-import { EmbedGenerator, Logger } from '../../utils';
+import { Logger } from '../../utils/misc';
+import EmbedGenerator from '../../utils/commands/embeds';
 
 export default async function (member: GuildMember) {
   try {

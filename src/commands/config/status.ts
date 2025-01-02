@@ -1,7 +1,7 @@
 import { PresenceStatusData, SlashCommandBuilder } from 'discord.js';
-import { getCommandDescription } from '../../json';
+import { getCommandDescription } from '../../utils/json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { Logger } from '../../utils';
+import { Logger } from '../../utils/misc';
 import { status as configStatus } from '../../config.json';
 import Luna from '../../utils/Luna';
 

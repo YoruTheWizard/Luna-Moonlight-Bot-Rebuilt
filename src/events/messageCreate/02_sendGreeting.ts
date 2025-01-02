@@ -1,4 +1,4 @@
-import { getNickname } from '../../json';
+import { getNickname } from '../../utils/json';
 import { MessageCreateEventFn } from '../../types';
 import {
   checkMessageContent,
@@ -7,7 +7,7 @@ import {
   normal,
   sendTextMessage,
   shouldSendMessage,
-} from '../../utils';
+} from '../../utils/content';
 
 const sendGreeting: MessageCreateEventFn = async message => {
   if (!shouldSendMessage(message.author, message.content, message.channelId))

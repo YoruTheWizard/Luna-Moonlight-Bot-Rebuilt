@@ -1,4 +1,4 @@
-import { getEmojiArray } from '../../json';
+import { getEmojiArray } from '../../utils/json';
 import type {
   CheckMessageContentOptions,
   MessageCreateEventFn,
@@ -8,7 +8,7 @@ import {
   normal,
   sendTextMessage,
   shouldSendMessage,
-} from '../../utils';
+} from '../../utils/content';
 
 const sendEmoji: MessageCreateEventFn = async message => {
   if (!shouldSendMessage(message.author, message.content, message.channelId))

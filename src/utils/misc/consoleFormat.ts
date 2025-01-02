@@ -43,7 +43,7 @@
  * - fg: foreground green
  * - fw: foreground white
  */
-export const consoleFormat = {
+const consoleFormat = {
   // TEXT FORMAT
   /** Reset format */
   r: '\x1b[0m',
@@ -73,3 +73,5 @@ export const consoleFormat = {
   warning: '\x1b[1m\x1b[33m[!]\x1b[0m',
   error: '\x1b[1m\x1b[31m[!]\x1b[0m',
 };
+
+export { consoleFormat as cf };

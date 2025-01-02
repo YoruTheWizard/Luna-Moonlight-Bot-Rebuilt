@@ -134,6 +134,6 @@ dist
 
 # Project
 config.json
-internal/
+assets/
 docs/
 test/

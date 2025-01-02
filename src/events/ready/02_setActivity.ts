@@ -1,6 +1,6 @@
 import { ActivityType, Client } from 'discord.js';
 import { activity } from '../../config.json';
-import { consoleFormat as cf, Logger } from '../../utils';
+import { cf, Logger } from '../../utils/misc';
 
 export default function (c: Client<true>) {
   if (!activity.type) c.user.setActivity();

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { resolve } from 'path';
 
-import * as config from '../config.json';
+import * as config from '../../config.json';
 
 type UpdateConfigFn = <T extends keyof typeof config>(
   key: T,
@@ -9,7 +9,7 @@ type UpdateConfigFn = <T extends keyof typeof config>(
 ) => Promise<void>;
 
 export const updateConfig: UpdateConfigFn = async (key, data) => {
-  const filePath = resolve(__dirname, '..', 'config.json');
+  const filePath = resolve(__dirname, '..', '..', 'config.json');
   const configObj = JSON.parse(
     fs.readFileSync(filePath, { encoding: 'utf-8' }),
   ) as typeof config;

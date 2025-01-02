@@ -9,8 +9,8 @@ import {
   linkListTreater,
   linksButtonRow,
   sendContentEmbeds,
-} from './content';
-import { Logger } from './logger';
+} from '../content/command';
+import { Logger } from '../misc/logger';
 
 const announcement = getCommandDescription('announcement');
 const announcement_release = getCommandDescription('announcement_release');
@@ -21,7 +21,7 @@ type AnnouncementFunc = (
   interaction: ChatInputCommandInteraction,
 ) => Promise<void>;
 
-export abstract class Announcement {
+export default abstract class Announcement {
   static release: AnnouncementFunc = async interaction => {
     const options = interaction.options;
     const announcementOpts = announcement.options!;

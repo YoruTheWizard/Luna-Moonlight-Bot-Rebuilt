@@ -1,7 +1,7 @@
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
-import { getCommandDescription } from '../../json';
-import { WelcomeChannel } from '../../utils';
+import { getCommandDescription } from '../../utils/json';
+import WelcomeChannel from '../../utils/commands/welcomeChannel';
 
 const welcome = getCommandDescription('welcomechannel');
 const welcomeConfig = getCommandDescription('welcomechannel_configure');

@@ -1,6 +1,6 @@
 import type { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
-import { getCommandDescription } from '../../json';
+import { getCommandDescription } from '../../utils/json';
 
 const ping = getCommandDescription('ping');
 

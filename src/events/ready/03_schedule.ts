@@ -1,9 +1,9 @@
 import { Client, TextChannel } from 'discord.js';
 import cron from 'node-cron';
-import { events } from '../../json';
-import { consoleFormat as cf, Logger } from '../../utils';
+import { events } from '../../utils/json';
+import { cf, Logger } from '../../utils/misc';
 import Luna from '../../utils/Luna';
-import { setBotStatus } from '../../utils/status';
+import { setBotStatus } from '../../utils/Luna/status';
 import { schedule } from '../../config.json';
 
 export default async function (c: Client<true>) {

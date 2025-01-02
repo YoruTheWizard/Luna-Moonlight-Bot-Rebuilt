@@ -6,9 +6,9 @@ import {
   getNickname,
   getRandomAdjective,
   isDad,
-} from '../../json';
+} from '../../utils/json';
 import { SlashCommandProps } from 'commandkit';
-import { Logger } from '../../utils';
+import { Logger } from '../../utils/misc';
 
 const opinion = getCommandDescription('lunasOpinion');
 const message = getMessage('opinion');

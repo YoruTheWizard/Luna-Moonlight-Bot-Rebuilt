@@ -1,11 +1,10 @@
 import { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
-import { getCommandDescription, getMessage } from '../../json';
+import { getCommandDescription, getMessage } from '../../utils/json';
 import Luna from '../../utils/Luna';
 import getChannelHistory from '../../utils/AI/getChannelHistory';
-import GoogleAI from '../../services/GoogleAI';
-import { Logger } from '../../utils';
-import { consoleFormat as cf } from '../../utils';
+import GoogleAI from '../../services/AI/GoogleAI';
+import { Logger, cf } from '../../utils/misc';
 
 const lunaai = getCommandDescription('lunaai');
 const lunaai_turnon = getCommandDescription('lunaai_turnon');

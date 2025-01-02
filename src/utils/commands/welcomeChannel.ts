@@ -3,10 +3,10 @@ import {
   ChatInputCommandInteraction,
   GuildBasedChannel,
 } from 'discord.js';
-import { Logger } from './logger';
+import { Logger } from '../misc/logger';
 import { getCommandDescription, getMessage } from '../json';
-import { welcomeOn } from '../config.json';
-import { updateConfig } from './updateConfig';
+import { welcomeOn } from '../../config.json';
+import { updateConfig } from '../misc/updateConfig';
 
 type WelcomeFunc = (
   interaction: ChatInputCommandInteraction<CacheType>,
@@ -14,7 +14,7 @@ type WelcomeFunc = (
 const welcomeConfig = getCommandDescription('welcomechannel_configure');
 const welcomeMsg = getMessage('welcomeConfig');
 
-export abstract class WelcomeChannel {
+export default abstract class WelcomeChannel {
   static register: WelcomeFunc = async interaction => {
     try {
       await interaction.deferReply();
@@ -48,7 +48,7 @@ export abstract class WelcomeChannel {
         image: '',
         color: 'Random',
         goodbyeImage: '',
-        goodbyeColor: 'Random'
+        goodbyeColor: 'Random',
       });
       updateConfig('welcomeOn', welcomeOn);
       const msg = welcomeMsg.register.replace('{newChannel}', newChannel.name);

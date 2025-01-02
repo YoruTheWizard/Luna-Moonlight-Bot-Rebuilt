@@ -1,9 +1,9 @@
 import { Client, TextChannel } from 'discord.js';
-import start from '..';
-import { Logger } from './logger';
+import start from '../..';
+import { Logger } from '../misc/logger';
 
 /**
- * `[ Util ]`
+ * `[ Luna ]`
  *
  * Restarts the client
  *

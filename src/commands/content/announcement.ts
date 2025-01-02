@@ -1,8 +1,9 @@
 import type { CommandOptions, SlashCommandProps } from 'commandkit';
 import { SlashCommandBuilder } from 'discord.js';
 
-import { Announcement, setCommandTitleOption } from '../../utils';
-import { getCommandDescription } from '../../json';
+import { getCommandDescription } from '../../utils/json';
+import { setCommandTitleOption } from '../../utils/content';
+import Announcement from '../../utils/commands/announcement';
 
 const announcement = getCommandDescription('announcement');
 const announcement_release = getCommandDescription('announcement_release');

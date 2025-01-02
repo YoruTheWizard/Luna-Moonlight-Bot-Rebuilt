@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, TextChannel } from 'discord.js';
-import { getCommandDescription } from '../../json';
+import { getCommandDescription } from '../../utils/json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { restart } from '../../utils';
+import { restart } from '../../utils/Luna';
 
 const restartCmd = getCommandDescription('restart');
 

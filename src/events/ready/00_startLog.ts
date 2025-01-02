@@ -1,5 +1,5 @@
 import { Client } from 'discord.js';
-import { consoleFormat as cf, Logger } from '../../utils';
+import { cf, Logger } from '../../utils/misc';
 import Luna from '../../utils/Luna';
 
 export default function (client: Client<true>) {

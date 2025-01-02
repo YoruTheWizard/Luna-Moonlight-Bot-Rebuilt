@@ -1,7 +1,8 @@
 import { Client, PresenceStatusData } from 'discord.js';
 import { status, schedule } from '../../config.json';
-import { consoleFormat as cf, getCurrentDate, Logger } from '../../utils';
-import { setBotStatus } from '../../utils/status';
+import { cf, Logger } from '../../utils/misc';
+import { setBotStatus } from '../../utils/Luna/status';
+import { getCurrentDate } from '../../utils/content';
 
 export default async function (c: Client<true>) {
   const hr = getCurrentDate().getHours();

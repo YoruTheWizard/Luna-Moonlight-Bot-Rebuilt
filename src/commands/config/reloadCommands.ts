@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { getCommandDescription } from '../../json';
-import { Logger, consoleFormat as cf } from '../../utils';
+import { getCommandDescription } from '../../utils/json';
+import { Logger } from '../../utils/misc';
 
 const reloadCmd = getCommandDescription('reloadCommands');
 

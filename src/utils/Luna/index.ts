@@ -1,4 +1,4 @@
-import { status, AIConfig } from '../config.json';
+import { status, AIConfig } from '../../config.json';
 
 export default abstract class Luna {
   private static ASLEEP = false;
@@ -26,3 +26,6 @@ export default abstract class Luna {
     Luna.AI_ON = value;
   }
 }
+
+export * from './restart';
+export * from './status';

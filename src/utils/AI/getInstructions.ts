@@ -7,7 +7,6 @@ export default function getInstructions() {
     __dirname,
     '..',
     '..',
-    '..',
     'assets',
     'docs',
     'AIInstructions.txt',

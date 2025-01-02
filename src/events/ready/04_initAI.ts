@@ -1,8 +1,8 @@
 import { Client } from 'discord.js';
-import GoogleAI from '../../services/GoogleAI';
+import GoogleAI from '../../services/AI/GoogleAI';
 import getChannelHistory from '../../utils/AI/getChannelHistory';
-import { consoleFormat as cf, Logger } from '../../utils';
-import OpenAI_API from '../../services/OpenAI';
+import { cf, Logger } from '../../utils/misc';
+import OpenAI_API from '../../services/AI/OpenAI';
 
 export default async function (c: Client<true>) {
   const history = await getChannelHistory(c);

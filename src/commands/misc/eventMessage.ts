@@ -3,9 +3,9 @@ import {
   SlashCommandBuilder,
   TextChannel,
 } from 'discord.js';
-import { getCommandDescription, getMessage } from '../../json';
+import { getCommandDescription, getMessage } from '../../utils/json';
 import { CommandOptions, SlashCommandProps } from 'commandkit';
-import { Logger } from '../../utils';
+import { Logger } from '../../utils/misc';
 
 const eventMsg = getCommandDescription('eventMessage');
 

@@ -1,7 +1,7 @@
 import { FunctionDeclaration, SchemaType } from '@google/generative-ai';
-import OpenAI_API from '../../services/OpenAI';
-import SerpAPI from '../../services/SerpAPI';
-import { Logger } from '../logger';
+import OpenAI_API from '../../services/AI/OpenAI';
+import SerpAPI from '../../services/API/SerpAPI';
+import { Logger } from '../misc/logger';
 import { DrawImageData } from '../../types';
 import { getCurrentDate } from '../content';
 
@@ -82,7 +82,7 @@ export function isGeneratedImage(data: any): data is DrawImageData {
   return !!data.image;
 }
 
-export function getNow() {
+function getNow() {
   const date = getCurrentDate();
   return {
     date,

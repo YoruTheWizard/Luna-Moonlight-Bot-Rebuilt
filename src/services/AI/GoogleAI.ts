@@ -4,9 +4,9 @@ import {
   GenerativeModel,
   GoogleGenerativeAI,
 } from '@google/generative-ai';
-import { AIConfig } from '../config.json';
-import getInstructions from '../utils/AI/getInstructions';
-import { functionDeclarations } from '../utils/AI/functions';
+import { AIConfig } from '../../config.json';
+import getInstructions from '../../utils/AI/getInstructions';
+import { functionDeclarations } from '../../utils/AI/functions';
 const geminiConfig = AIConfig.gemini;
 
 export default abstract class GoogleAI {

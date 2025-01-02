@@ -2,13 +2,14 @@ import { MessageCreateEventFn } from '../../types';
 import { AIConfig } from '../../config.json';
 import MessageCache from '../../utils/AI/MessageCache';
 import messageToJSON from '../../utils/AI/messageToJSON';
-import { isIgnore, Logger } from '../../utils';
-import GoogleAI from '../../services/GoogleAI';
+import { Logger } from '../../utils/misc';
+import GoogleAI from '../../services/AI/GoogleAI';
 import getChannelHistory from '../../utils/AI/getChannelHistory';
 import { isGeneratedImage, useFunction } from '../../utils/AI/functions';
 import { AttachmentBuilder } from 'discord.js';
-import { timeout } from '../../utils';
+import { timeout } from '../../utils/misc';
 import Luna from '../../utils/Luna';
+import { isIgnore } from '../../utils/content';
 
 const sendAIResponse: MessageCreateEventFn = async (message, client, h) => {
   if (message.channel.id !== AIConfig.gemini.guild.channel) return;
@@ -91,17 +92,19 @@ const sendAIResponse: MessageCreateEventFn = async (message, client, h) => {
         respArray.forEach(async resp => {
           await message.reply({
             content: resp,
-            files: isGeneratedImage(data)
-              ? [new AttachmentBuilder(data.image.url, { name: 'image.png' })]
-              : undefined,
+            files:
+              isGeneratedImage(data) && data
+                ? [new AttachmentBuilder(data.image.url, { name: 'image.png' })]
+                : undefined,
           });
         });
       } else
         await message.reply({
           content: fcResponse,
-          files: isGeneratedImage(data)
-            ? [new AttachmentBuilder(data.image.url, { name: 'image.png' })]
-            : undefined,
+          files:
+            isGeneratedImage(data) && data
+              ? [new AttachmentBuilder(data.image.url, { name: 'image.png' })]
+              : undefined,
         });
       GoogleAI.isCooldown = false;
     }

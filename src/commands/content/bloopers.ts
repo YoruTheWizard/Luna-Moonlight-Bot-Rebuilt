@@ -5,8 +5,8 @@ import {
   getCommandDescription,
   getMessage,
   getRandomBlooper,
-} from '../../json';
-import { Logger } from '../../utils';
+} from '../../utils/json';
+import { Logger } from '../../utils/misc';
 
 const scanBloopers = getCommandDescription('scanBloopers');
 const blooperAuthors = getBlooperAuthors();

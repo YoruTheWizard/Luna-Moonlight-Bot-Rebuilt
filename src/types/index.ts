@@ -39,6 +39,7 @@ export type ContentLinkObject = {
 export type CustomNicknameUser = {
   id: string | string[];
   nickname: string;
+  nicknamePt?: string;
   relation?: string;
   polite?: boolean;
 };

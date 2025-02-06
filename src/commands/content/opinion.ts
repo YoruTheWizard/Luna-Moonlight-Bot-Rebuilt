@@ -61,7 +61,8 @@ export async function run({
     }
 
     const customNick = getNickname(personId);
-    const personName = customNick?.nickname || person.displayName;
+    const personName =
+      customNick?.nicknamePt || customNick?.nickname || person.displayName;
 
     const adjective = getRandomAdjective();
     if (adjective.adj === 'nada') {

@@ -14,7 +14,8 @@ const sendGreeting: MessageCreateEventFn = async message => {
     return;
   const msg = messageIntoArray(message.content);
   const user = getNickname(message.author.id) || message.author.displayName;
-  const username = typeof user === 'string' ? user : user.nickname;
+  const username =
+    typeof user === 'string' ? user : user.nicknamePt || user.nickname;
   const polite = typeof user === 'string' ? true : user.polite;
   const now = getCurrentMoment();
   let reply: string = '';

@@ -156,4 +156,4 @@ export type SearchResult = {
 export type SearchFn = (
   q: string,
   options?: SearchOptions,
-) => Promise<SearchResult>;
+) => Promise<SearchResult | null>;

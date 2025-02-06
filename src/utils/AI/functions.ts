@@ -4,6 +4,7 @@ import SerpAPI from '../../services/API/SerpAPI';
 import { Logger } from '../misc/logger';
 import { DrawImageData } from '../../types';
 import { getCurrentDate } from '../content';
+import { cf } from '../misc';
 
 export const functionDeclarations: FunctionDeclaration[] = [
   {
@@ -58,6 +59,7 @@ export const functionDeclarations: FunctionDeclaration[] = [
 ];
 
 export async function useFunction(functionName: string, args: any) {
+  Logger.log(`${cf.b} Called function:${cf.rb} "${functionName}"`, true);
   switch (functionName) {
     case 'drawImage':
       return await OpenAI_API.generateImage(

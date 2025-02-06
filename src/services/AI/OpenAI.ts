@@ -3,6 +3,7 @@ import { DrawImageFn, DrawImageOptions } from '../../types';
 import { AIConfig } from '../../config.json';
 import { ImageGenerateParams } from 'openai/resources';
 import { DrawImageSize } from '../../types/enum';
+import { cf, Logger } from '../../utils/misc';
 const OpenAIConfig = AIConfig.openai as Omit<
   ImageGenerateParams,
   'prompt' | 'user'
@@ -58,17 +59,23 @@ export default abstract class OpenAI_API {
       }
     }
 
-    const result = await OpenAI_API.instance.images.generate({
-      prompt: imageDescription,
-      ...OpenAIConfig,
-      ...castOptions,
-    });
-    const url = result.data[0].url;
-    if (!url) return null;
+    try {
+      const result = await OpenAI_API.instance.images.generate({
+        prompt: imageDescription,
+        ...OpenAIConfig,
+        ...castOptions,
+      });
+      const url = result.data[0].url;
+      if (!url) throw new Error('Image url is null.');
 
-    return {
-      imageDescription,
-      image: { url },
-    };
+      Logger.log(`${cf.b}Function response:${cf.rb} image generated.`);
+      return {
+        imageDescription,
+        image: { url },
+      };
+    } catch (err) {
+      Logger.error('event', 'generating image', err);
+      return null;
+    }
   };
 }

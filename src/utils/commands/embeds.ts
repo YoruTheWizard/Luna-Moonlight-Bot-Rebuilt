@@ -67,7 +67,7 @@ export default abstract class EmbedGenerator {
             ? releasesChannel
             : releasesChannel.id
         }>`,
-        value: messages.welcome.rules,
+        value: messages.welcome.releases,
         inline: true,
       });
     if (announcementsChannel)
@@ -77,7 +77,7 @@ export default abstract class EmbedGenerator {
             ? announcementsChannel
             : announcementsChannel.id
         }>`,
-        value: messages.welcome.rules,
+        value: messages.welcome.announcements,
         inline: true,
       });
 

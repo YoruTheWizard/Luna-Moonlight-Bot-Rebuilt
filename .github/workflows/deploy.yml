@@ -1,0 +1,23 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v1.2.2
+      with:
+        username: ${{ secrets.USERNAME }}
+        host: ${{ secrets.HOST }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd Luna &&\
+          pm2 stop Luna &&\
+          git pull &&\
+          npm &&\
+          npm run build &&\
+          pm2 start Luna

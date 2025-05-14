@@ -14,10 +14,11 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: |
-          cd Luna &&\
-          pm2 stop Luna &&\
-          git pull &&\
-          npm &&\
-          npm run build &&\
-          pm2 start Luna
+        script: whoami
+        # script: |
+        #   cd Luna &&\
+        #   pm2 stop Luna &&\
+        #   git pull &&\
+        #   npm &&\
+        #   npm run build &&\
+        #   pm2 start Luna

@@ -24,13 +24,11 @@ jobs:
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
         EXCLUDE: "/.git/, /dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"
-        SCRIPT_BEFORE: |
-          whoami
-          ls -al
+        SCRIPT_BEFORE: pm2 stop Luna; ls;
         SCRIPT_AFTER: |
-          whoami
-          ls -al
-          echo $RSYNC_STDOUT
+          whoami;
+          ls;
+          echo $RSYNC_STDOUT;
 
       # with:
       #   host: ${{ secrets.HOST }}

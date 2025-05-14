@@ -23,7 +23,7 @@ jobs:
         REMOTE_HOST: ${{secrets.HOST}}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
-        EXCLUDE: "/.git/, /dist/, /node-modules/, **.env, rebuild_app.sh, watcher.sh"
+        EXCLUDE: "/.git/, /dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"
         SCRIPT_BEFORE: |
           whoami
           ls -al

@@ -7,7 +7,7 @@ export default abstract class Luna {
   private constructor() {}
 
   public static config() {
-    Luna.ASLEEP = status !== 'invisible';
+    Luna.ASLEEP = status === 'invisible';
     Luna.AI_ON = AIConfig.isOn;
   }
 

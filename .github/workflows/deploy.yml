@@ -2,19 +2,34 @@ name: deploy
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
+    name: Deploy to server
     runs-on: ubuntu-latest
+
     steps:
-    - name: SSH Remote Commands
-      uses: appleboy/ssh-action@v1.2.2
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        script: whoami
+    - name: Checkout files
+      uses: actions/checkout@v3
+
+    - name: Copyt files with SSH
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "./"
+        REMOTE_HOST: ${{secrets.HOST}}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
+        EXCLUDE: "/.git/, /dist/, /node-modules/, **.env, rebuild_app.sh, watcher.sh"
+
+      # with:
+      #   host: ${{ secrets.HOST }}
+      #   username: ${{ secrets.USERNAME }}
+      #   password: ${{ secrets.PASSWORD }}
+      #   script: whoami
         # script: |
         #   cd Luna &&\
         #   pm2 stop Luna &&\
